@@ -1,0 +1,6 @@
+1. Import client from api_client
+2 . Example get request
+const response = await client.get(`/api/endpoint`);
+response.data will contain data from the server
+not need to add base URL. 
+3. Do any kind of request such as client.post(), client.patch() etc.

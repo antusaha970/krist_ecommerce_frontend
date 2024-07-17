@@ -1,0 +1,9 @@
+Component folder
+All Components and there jsx and css file will be under there folder
+For example 
+Home -> Home.jsx and Home.css any other helper file if needed
+
+Shared Folder
+All shared folder which will be shared across the application will be under here.
+For example 
+Navbar -> Navbar.jsx and Navbar.css any other helper
