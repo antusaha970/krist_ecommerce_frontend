@@ -1,5 +1,6 @@
 import DealsCounter from "../DealsCounter/DealsCounter";
 import Hero from "../Hero/Hero";
+import InstaStory from "../InstaStory/InstaStory";
 import ShopByCategorySlider from "../ShopByCategorySlider/ShopByCategorySlider";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <Hero />
       <ShopByCategorySlider />
       <DealsCounter />
+      <InstaStory />
     </>
   );
 };
