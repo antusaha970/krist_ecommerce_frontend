@@ -12,6 +12,19 @@
   cursor: pointer;
   border-radius: 5px;
 }
+.base_button_2 {
+  z-index: 1;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: #131118;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
 .base_button::after {
   content: "";

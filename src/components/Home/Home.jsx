@@ -1,3 +1,4 @@
+import DealsCounter from "../DealsCounter/DealsCounter";
 import Hero from "../Hero/Hero";
 import ShopByCategorySlider from "../ShopByCategorySlider/ShopByCategorySlider";
 
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Hero />
       <ShopByCategorySlider />
+      <DealsCounter />
     </>
   );
 };
