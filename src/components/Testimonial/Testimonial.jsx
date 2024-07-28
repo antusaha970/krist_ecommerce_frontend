@@ -58,7 +58,9 @@ const Testimonial = () => {
   return (
     <section className="container my-5 ">
       <div>
-        <h2 className="fw-bold text-center mb-3">What our customer say</h2>
+        <h2 className="fw-bold text-center mb-3">
+          What our customer say <i className="fa-solid fa-comment"></i>
+        </h2>
       </div>
 
       <Slider {...settings}>
