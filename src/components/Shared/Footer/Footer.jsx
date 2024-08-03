@@ -5,7 +5,7 @@ const Footer = () => {
     <section className="footer_bg">
       {/* Remove the container if you want to extend the Footer to full width. */}
       <div className="container my-">
-        <footer className="text-center text-lg-start  mt-xl-5 pt-4">
+        <footer className="text-center text-lg-start   pt-4">
           {/* Grid container */}
           <div className="container p-4">
             {/*Grid row*/}

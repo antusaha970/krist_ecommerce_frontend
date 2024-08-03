@@ -53,7 +53,15 @@ const Navbar = () => {
               <i className="fa-solid fa-bag-shopping me-4 icon_color nav_icon_size"></i>
             </div>
             <div>
-              <button className="base_button">Login</button>
+              <Link className="base_button_2 me-2 text-decoration-none">
+                Login
+              </Link>
+              <Link
+                to={"/register"}
+                className="base_button_2 me-2 text-decoration-none"
+              >
+                Register
+              </Link>
             </div>
           </div>
         </div>
