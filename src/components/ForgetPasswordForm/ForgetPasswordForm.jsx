@@ -1,5 +1,5 @@
-import "./loginForm.css";
-import login_img from "../../assets/stock/login.png";
+import "./forgetPassword.css";
+import forget_pass_img from "../../assets/stock/forget_password.png";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import client from "../../api_client/api_client";
@@ -39,7 +39,7 @@ const LoginForm = () => {
     <section className="container my-5">
       <div className="row align-items-center">
         <div className="col-12 col-sm-12 col-md-6">
-          <img src={login_img} alt="login" className="img-fluid" />
+          <img src={forget_pass_img} alt="login" className="img-fluid" />
         </div>
         <div className="col-12 col-sm-12 col-md-6">
           <h4 className="fw-bold">Welcome 👋</h4>
