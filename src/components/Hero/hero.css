@@ -1,0 +1,14 @@
+.banner_img {
+  height: 600px;
+  border-radius: 10px;
+}
+.banner_title {
+  font-size: 60px;
+}
+
+.gray_box {
+  background: #f3f3f3;
+  margin: 15px 0;
+  border-radius: 5px;
+  padding: 15px;
+}

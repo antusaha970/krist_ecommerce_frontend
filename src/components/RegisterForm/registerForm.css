@@ -1,0 +1,17 @@
+.form_img {
+  height: 100vh;
+}
+
+.custom-input {
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: #131118;
+  box-shadow: 0 0 3px rgb(19, 17, 24);
+  outline: none;
+}

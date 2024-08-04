@@ -1,0 +1,16 @@
+.category_box {
+  background: #f3f3f3;
+  margin-left: 10px;
+  height: 150px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category_title {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+}
