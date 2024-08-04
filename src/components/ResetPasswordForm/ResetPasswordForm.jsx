@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import client from "../../api_client/api_client";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const ResetPasswordForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -15,6 +16,7 @@ const ResetPasswordForm = () => {
       const response = await client.post("/api/accounts/reset_password/", data);
       if (response.status === 200) {
         toast.success("Password reset successfully");
+        navigate("/");
       } else {
         toast.warning("Password reset failed!");
       }
