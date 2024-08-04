@@ -12,20 +12,17 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const response = await client.post("/api/accounts/login/", data);
+      const response = await client.post(
+        "/api/accounts/forgot_password/",
+        data
+      );
       if (response.status === 200) {
-        toast.success("Logged in successful");
-        const user_data = response.data;
-        localStorage.setItem(
-          "access_token",
-          JSON.stringify(user_data.access_token)
-        );
+        toast.success("OTP sent successfully");
       } else {
-        toast.warning("Login failed!! please try again later");
+        toast.warning("please try again later");
       }
     } catch (error) {
       if (error.response.status == 404) {
-        toast.error("Invalid credential!! ");
         toast.error("No account found");
       } else {
         toast.error("Server error!! try again later");
@@ -42,8 +39,11 @@ const LoginForm = () => {
           <img src={forget_pass_img} alt="login" className="img-fluid" />
         </div>
         <div className="col-12 col-sm-12 col-md-6">
-          <h4 className="fw-bold">Welcome 👋</h4>
-          <p className="text-muted">Please login here</p>
+          <h4 className="fw-bold">Forget password</h4>
+          <p className="text-muted">
+            Enter registered email here. We will send a code to reset your
+            password
+          </p>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
@@ -58,22 +58,9 @@ const LoginForm = () => {
                 {...register("email")}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Password *
-              </label>
-              <input
-                type="password"
-                className="form-control custom-input"
-                id="password"
-                placeholder="Enter your password"
-                required
-                {...register("password")}
-              />
-            </div>
             {!loading && (
               <button className="base_button" type="submit">
-                Login
+                Send
               </button>
             )}
             {loading && (
@@ -83,7 +70,7 @@ const LoginForm = () => {
             )}
           </form>
           <div className="mt-2">
-            <Link to={"/forget-password"}> Forget password?</Link>
+            <Link to={"/login"}> Login from here</Link>
           </div>
         </div>
       </div>
