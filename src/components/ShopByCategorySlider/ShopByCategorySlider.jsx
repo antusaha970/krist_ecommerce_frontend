@@ -54,7 +54,7 @@ const ShopByCategorySlider = () => {
   }, []);
 
   return (
-    <section className="container my-5">
+    <section className="container m_top_bottom">
       <h2 className="text-center fw-bold">Shop by category</h2>
       <div className="slider-container">
         <Slider {...settings}>

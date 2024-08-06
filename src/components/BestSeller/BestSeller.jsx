@@ -18,7 +18,7 @@ const BestSeller = () => {
   console.log(products);
 
   return (
-    <section className="container my-5">
+    <section className="container m_top_bottom">
       <h2 className="text-center fw-bold">Our Bestseller</h2>
       <div className="container">
         <div className="row">

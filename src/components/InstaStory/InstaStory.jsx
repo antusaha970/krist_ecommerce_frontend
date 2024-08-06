@@ -5,7 +5,7 @@ import s3 from "../../assets/instaStory/s3.jpeg";
 import s4 from "../../assets/instaStory/s4.jpg";
 const InstaStory = () => {
   return (
-    <section className="container my-5">
+    <section className="container m_top_bottom">
       <h2 className="fw-bold text-center">Our Instagram Story</h2>
       <div className="row">
         <div className="col-12 col-sm-6 col-md-3">
