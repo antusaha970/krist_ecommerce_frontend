@@ -52,7 +52,6 @@ const ShopByCategorySlider = () => {
     };
     getAllCategory();
   }, []);
-  console.log(allCategory);
 
   return (
     <section className="container my-5">
