@@ -12,6 +12,7 @@ const Products = () => {
   const [selectedCategories, setSelectedCategories] = useState("");
   const [selectedColors, setSelectedColors] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+  const [selectedPage, setSelectedPage] = useState(1);
 
   useEffect(() => {
     const getAllCategories = async () => {
@@ -47,7 +48,7 @@ const Products = () => {
     const getAllProducts = async () => {
       try {
         const response = await client.get(
-          `/api/products/?categories=${selectedCategories}&colors=${selectedColors}&sizes=${selectedSize}`
+          `/api/products/?categories=${selectedCategories}&colors=${selectedColors}&sizes=${selectedSize}&page=${selectedPage}`
         );
         setProducts(response.data);
       } catch (error) {
@@ -55,7 +56,7 @@ const Products = () => {
       }
     };
     getAllProducts();
-  }, [selectedCategories, selectedColors, selectedSize]);
+  }, [selectedCategories, selectedColors, selectedSize, selectedPage]);
 
   const handleChangeCategoryForFilter = (category) => {
     setSelectedCategories(category);
@@ -65,6 +66,17 @@ const Products = () => {
   };
   const handleChangeSizeForFilter = (size) => {
     setSelectedSize(size);
+  };
+
+  const handlePreviousPage = () => {
+    if (products.previous) {
+      setSelectedPage((curPage) => curPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (products.next) {
+      setSelectedPage((curPage) => curPage + 1);
+    }
   };
 
   return (
@@ -85,7 +97,7 @@ const Products = () => {
                   aria-expanded="true"
                   aria-controls="panelsStayOpen-collapseOne"
                 >
-                  Category
+                  Product Category
                 </button>
               </h2>
               <div id="categories" className="accordion-collapse collapse show">
@@ -139,7 +151,7 @@ const Products = () => {
                   data-bs-target="#sizes"
                   aria-expanded="true"
                 >
-                  Sizes
+                  Product Sizes
                 </button>
               </h2>
               <div id="sizes" className="accordion-collapse collapse show">
@@ -188,7 +200,7 @@ const Products = () => {
                   data-bs-target="#colors"
                   aria-expanded="true"
                 >
-                  Colors
+                  Product Colors
                 </button>
               </h2>
               <div id="colors" className="accordion-collapse collapse show">
@@ -234,7 +246,11 @@ const Products = () => {
         </div>
         <div className="col-12 col-sm-8 col-md-10">
           <div className="d-flex justify-content-between my-2 align-items-center">
-            <div>Showing 10 of {products.count} results</div>
+            <div>
+              <i className="fa-solid fa-border-none"></i> Showing{" "}
+              {products?.results?.length} of {products.count} results{" "}
+              <i className="fa-solid fa-arrow-down"></i>
+            </div>
             <div>
               <select
                 className="form-select"
@@ -251,6 +267,30 @@ const Products = () => {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
+
+          {/* pagination navigation */}
+          <div className="d-flex justify-content-end">
+            <ul className="pagination">
+              <li className="page-item">
+                <button
+                  onClick={handlePreviousPage}
+                  className="base_button rounded-0 me-1"
+                >
+                  Previous
+                </button>
+              </li>
+
+              <li className="page-item">
+                <button
+                  onClick={handleNextPage}
+                  className="base_button rounded-0"
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </div>
+          {/* pagination navigation */}
         </div>
       </div>
     </section>
