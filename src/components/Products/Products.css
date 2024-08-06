@@ -1,0 +1,8 @@
+.form-check-input:checked {
+  background-color: #131118;
+  border-color: #131118;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #e6e6e6;
+}

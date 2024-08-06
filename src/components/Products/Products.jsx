@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import client from "../../api_client/api_client";
 import ProductCard from "../Shared/ProductCard/ProductCard";
+import "./Products.css";
 
 const Products = () => {
   const [products, setProducts] = useState({});
   const [categories, setCategories] = useState([]);
   const [sizes, setSizes] = useState([]);
+  const [colors, setColors] = useState([]);
   useEffect(() => {
     const getAllProducts = async () => {
       try {
@@ -31,9 +33,18 @@ const Products = () => {
         console.error({ error });
       }
     };
+    const getAllColors = async () => {
+      try {
+        const response = await client.get("/api/products/all_colors/");
+        setColors(response.data);
+      } catch (error) {
+        console.error({ error });
+      }
+    };
     getAllProducts();
     getAllCategories();
     getAllSizes();
+    getAllColors();
   }, []);
 
   console.log(categories);
@@ -137,6 +148,53 @@ const Products = () => {
                           htmlFor={`${size.name}`}
                         >
                           {size.name}
+                        </label>
+                      </div>
+                    ))}
+                  </>
+                </div>
+              </div>
+            </div>
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button
+                  className="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#colors"
+                  aria-expanded="true"
+                >
+                  Colors
+                </button>
+              </h2>
+              <div id="colors" className="accordion-collapse collapse show">
+                <div className="accordion-body">
+                  <>
+                    <div className="form-check mb-2">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="color_filter"
+                        id="all_colors"
+                        defaultChecked="true"
+                      />
+                      <label className="form-check-label" htmlFor="all_colors">
+                        All colors
+                      </label>
+                    </div>
+                    {colors?.map((color) => (
+                      <div className="form-check mb-2" key={color.name}>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="color_filter"
+                          id={`${color.name}`}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`${color.name}`}
+                        >
+                          {color.name}
                         </label>
                       </div>
                     ))}
