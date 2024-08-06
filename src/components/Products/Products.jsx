@@ -5,6 +5,7 @@ import ProductCard from "../Shared/ProductCard/ProductCard";
 const Products = () => {
   const [products, setProducts] = useState({});
   const [categories, setCategories] = useState([]);
+  const [sizes, setSizes] = useState([]);
   useEffect(() => {
     const getAllProducts = async () => {
       try {
@@ -22,8 +23,17 @@ const Products = () => {
         console.error({ error });
       }
     };
+    const getAllSizes = async () => {
+      try {
+        const response = await client.get("/api/products/all_sizes/");
+        setSizes(response.data);
+      } catch (error) {
+        console.error({ error });
+      }
+    };
     getAllProducts();
     getAllCategories();
+    getAllSizes();
   }, []);
 
   console.log(categories);
@@ -35,24 +45,21 @@ const Products = () => {
       <div className="row">
         <div className="col-12 col-sm-4 col-md-2">
           {/* all filters */}
-          <div className="accordion" id="accordionPanelsStayOpenExample">
+          <div className="accordion" id="filter_accordion">
             <div className="accordion-item">
               <h2 className="accordion-header">
                 <button
                   className="accordion-button"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#panelsStayOpen-collapseOne"
+                  data-bs-target="#categories"
                   aria-expanded="true"
                   aria-controls="panelsStayOpen-collapseOne"
                 >
                   Category
                 </button>
               </h2>
-              <div
-                id="panelsStayOpen-collapseOne"
-                className="accordion-collapse collapse show"
-              >
+              <div id="categories" className="accordion-collapse collapse show">
                 <div className="accordion-body">
                   <>
                     <div className="form-check mb-2">
@@ -83,6 +90,53 @@ const Products = () => {
                           htmlFor={`${category.name}`}
                         >
                           {category.name}
+                        </label>
+                      </div>
+                    ))}
+                  </>
+                </div>
+              </div>
+            </div>
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button
+                  className="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#sizes"
+                  aria-expanded="true"
+                >
+                  Sizes
+                </button>
+              </h2>
+              <div id="sizes" className="accordion-collapse collapse show">
+                <div className="accordion-body">
+                  <>
+                    <div className="form-check mb-2">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="size_filter"
+                        id="all_sizes"
+                        defaultChecked="true"
+                      />
+                      <label className="form-check-label" htmlFor="all_sizes">
+                        All Sizes
+                      </label>
+                    </div>
+                    {sizes?.map((size) => (
+                      <div className="form-check mb-2" key={size.name}>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="size_filter"
+                          id={`${size.name}`}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`${size.name}`}
+                        >
+                          {size.name}
                         </label>
                       </div>
                     ))}
