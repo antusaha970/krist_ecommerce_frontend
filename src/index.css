@@ -1,3 +1,6 @@
+body {
+  font-family: "Jost", sans-serif;
+}
 .base_button {
   z-index: 1;
   position: relative;
