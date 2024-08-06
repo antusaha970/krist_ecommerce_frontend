@@ -8,15 +8,12 @@ const Products = () => {
   const [categories, setCategories] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [colors, setColors] = useState([]);
+
+  const [selectedCategories, setSelectedCategories] = useState("");
+  const [selectedColors, setSelectedColors] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+
   useEffect(() => {
-    const getAllProducts = async () => {
-      try {
-        const response = await client.get(`/api/products/`);
-        setProducts(response.data);
-      } catch (error) {
-        console.error({ error });
-      }
-    };
     const getAllCategories = async () => {
       try {
         const response = await client.get("/api/products/all_categories/");
@@ -41,13 +38,34 @@ const Products = () => {
         console.error({ error });
       }
     };
-    getAllProducts();
     getAllCategories();
     getAllSizes();
     getAllColors();
   }, []);
 
-  console.log(categories);
+  useEffect(() => {
+    const getAllProducts = async () => {
+      try {
+        const response = await client.get(
+          `/api/products/?categories=${selectedCategories}&colors=${selectedColors}&sizes=${selectedSize}`
+        );
+        setProducts(response.data);
+      } catch (error) {
+        console.error({ error });
+      }
+    };
+    getAllProducts();
+  }, [selectedCategories, selectedColors, selectedSize]);
+
+  const handleChangeCategoryForFilter = (category) => {
+    setSelectedCategories(category);
+  };
+  const handleChangeColorForFilter = (color) => {
+    setSelectedColors(color);
+  };
+  const handleChangeSizeForFilter = (size) => {
+    setSelectedSize(size);
+  };
 
   return (
     <section className="container m_top_bottom">
@@ -80,6 +98,7 @@ const Products = () => {
                         name="category_filter"
                         id="all_category"
                         defaultChecked="true"
+                        onClick={() => handleChangeCategoryForFilter("")}
                       />
                       <label
                         className="form-check-label"
@@ -95,6 +114,9 @@ const Products = () => {
                           type="radio"
                           name="category_filter"
                           id={`${category.name}`}
+                          onClick={() =>
+                            handleChangeCategoryForFilter(category.name)
+                          }
                         />
                         <label
                           className="form-check-label"
@@ -130,6 +152,7 @@ const Products = () => {
                         name="size_filter"
                         id="all_sizes"
                         defaultChecked="true"
+                        onClick={() => handleChangeSizeForFilter("")}
                       />
                       <label className="form-check-label" htmlFor="all_sizes">
                         All Sizes
@@ -142,6 +165,7 @@ const Products = () => {
                           type="radio"
                           name="size_filter"
                           id={`${size.name}`}
+                          onClick={() => handleChangeSizeForFilter(size.name)}
                         />
                         <label
                           className="form-check-label"
@@ -177,6 +201,7 @@ const Products = () => {
                         name="color_filter"
                         id="all_colors"
                         defaultChecked="true"
+                        onClick={() => handleChangeColorForFilter("")}
                       />
                       <label className="form-check-label" htmlFor="all_colors">
                         All colors
@@ -189,6 +214,7 @@ const Products = () => {
                           type="radio"
                           name="color_filter"
                           id={`${color.name}`}
+                          onClick={() => handleChangeColorForFilter(color.name)}
                         />
                         <label
                           className="form-check-label"
