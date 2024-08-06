@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import client from "../../api_client/api_client";
 import ProductCard from "../Shared/ProductCard/ProductCard";
 import "./Products.css";
+import Loader from "../Shared/Loader/Loader";
 
 const Products = () => {
   const [products, setProducts] = useState({});
   const [categories, setCategories] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [colors, setColors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [selectedCategories, setSelectedCategories] = useState("");
   const [selectedColors, setSelectedColors] = useState("");
@@ -47,12 +49,15 @@ const Products = () => {
   useEffect(() => {
     const getAllProducts = async () => {
       try {
+        setIsLoading(true);
         const response = await client.get(
           `/api/products/?categories=${selectedCategories}&colors=${selectedColors}&sizes=${selectedSize}&page=${selectedPage}`
         );
         setProducts(response.data);
       } catch (error) {
         console.error({ error });
+      } finally {
+        setIsLoading(false);
       }
     };
     getAllProducts();
@@ -244,54 +249,61 @@ const Products = () => {
 
           {/* all filters */}
         </div>
-        <div className="col-12 col-sm-8 col-md-10">
-          <div className="d-flex justify-content-between my-2 align-items-center">
-            <div>
-              <i className="fa-solid fa-border-none"></i> Showing{" "}
-              {products?.results?.length} of {products.count} results{" "}
-              <i className="fa-solid fa-arrow-down"></i>
-            </div>
-            <div>
-              <select
-                className="form-select"
-                aria-label="Default select example"
-              >
-                <option selected="">Sort by</option>
-                <option value={1}>Latest</option>
-                <option value={2}>Oldest</option>
-              </select>
-            </div>
+        {isLoading && (
+          <div className="col-12 col-sm-8 col-md-10">
+            <Loader />
           </div>
-          <div className="row">
-            {products?.results?.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
-          {/* pagination navigation */}
-          <div className="d-flex justify-content-end">
-            <ul className="pagination">
-              <li className="page-item">
-                <button
-                  onClick={handlePreviousPage}
-                  className="base_button rounded-0 me-1"
+        )}
+        {!isLoading && (
+          <div className="col-12 col-sm-8 col-md-10">
+            <div className="d-flex justify-content-between my-2 align-items-center">
+              <div>
+                <i className="fa-solid fa-border-none"></i> Showing{" "}
+                {products?.results?.length} of {products.count} results{" "}
+                <i className="fa-solid fa-arrow-down"></i>
+              </div>
+              <div>
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
                 >
-                  Previous
-                </button>
-              </li>
+                  <option selected="">Sort by</option>
+                  <option value={1}>Latest</option>
+                  <option value={2}>Oldest</option>
+                </select>
+              </div>
+            </div>
+            <div className="row">
+              {products?.results?.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
 
-              <li className="page-item">
-                <button
-                  onClick={handleNextPage}
-                  className="base_button rounded-0"
-                >
-                  Next
-                </button>
-              </li>
-            </ul>
+            {/* pagination navigation */}
+            <div className="d-flex justify-content-end">
+              <ul className="pagination">
+                <li className="page-item">
+                  <button
+                    onClick={handlePreviousPage}
+                    className="base_button rounded-0 me-1"
+                  >
+                    Previous
+                  </button>
+                </li>
+
+                <li className="page-item">
+                  <button
+                    onClick={handleNextPage}
+                    className="base_button rounded-0"
+                  >
+                    Next
+                  </button>
+                </li>
+              </ul>
+            </div>
+            {/* pagination navigation */}
           </div>
-          {/* pagination navigation */}
-        </div>
+        )}
       </div>
     </section>
   );
