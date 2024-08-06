@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import client from "../../api_client/api_client";
+import ProductCard from "../Shared/ProductCard/ProductCard";
 
 const Products = () => {
   const [products, setProducts] = useState({});
@@ -23,7 +24,13 @@ const Products = () => {
 
       <div className="row">
         <div className="col-12 col-sm-4 col-md-2">filters</div>
-        <div className="col-12 col-sm-8 col-md-10">products</div>
+        <div className="col-12 col-sm-8 col-md-10">
+          <div className="row">
+            {products?.results?.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
