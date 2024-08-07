@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import client from "../../api_client/api_client";
 import "./ProductDetails.css";
 import Slider from "react-slick";
+import ProductAdditionalInformation from "../ProductAdditionalInformation/ProductAdditionalInformation";
 
 const settings = {
   dots: true,
@@ -111,74 +112,8 @@ const ProductDetails = () => {
       </div>
       {/* product card */}
       {/* product additional information */}
-      <div className="m_top_bottom">
-        <div>
-          <div className="nav nav-tabs" id="nav-tab" role="tablist">
-            <button
-              className="nav-link active"
-              id="nav-description-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-description"
-              type="button"
-              role="tab"
-              aria-controls="nav-description"
-              aria-selected="true"
-            >
-              Description
-            </button>
-            <button
-              className="nav-link"
-              id="nav-info-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-info"
-              type="button"
-              role="tab"
-              aria-controls="nav-info"
-              aria-selected="false"
-            >
-              Additional information
-            </button>
-            <button
-              className="nav-link"
-              id="nav-contact-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-contact"
-              type="button"
-              role="tab"
-              aria-controls="nav-contact"
-              aria-selected="false"
-            >
-              Reviews
-            </button>
-          </div>
-        </div>
-        <div className="tab-content" id="nav-tabContent">
-          <div
-            className="tab-pane fade show active"
-            id="nav-description"
-            role="tabpanel"
-            aria-labelledby="nav-description-tab"
-          >
-            <p className="text_18">{product?.description}</p>
-          </div>
-          <div
-            className="tab-pane fade"
-            id="nav-info"
-            role="tabpanel"
-            aria-labelledby="nav-info-tab"
-          >
-            <p className="text_18">{product?.additional_info}</p>
-          </div>
-          <div
-            className="tab-pane fade"
-            id="nav-contact"
-            role="tabpanel"
-            aria-labelledby="nav-contact-tab"
-          >
-            else 2
-          </div>
-        </div>
-      </div>
+
+      {!isLoading && <ProductAdditionalInformation product={product} />}
 
       {/* product additional information */}
     </div>
