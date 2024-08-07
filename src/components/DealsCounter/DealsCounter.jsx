@@ -1,7 +1,7 @@
 import deals from "../../assets/stock/deals.png";
 const DealsCounter = () => {
   return (
-    <section className="container my-5">
+    <section className="container m_top_bottom">
       <div className="row align-items-center">
         <div className="col-12 col-sm-12 col-md-6">
           <h2 className="fw-bold">Deals of the month</h2>
