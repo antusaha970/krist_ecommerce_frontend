@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import ForgetPasswordPage from "./pages/ForgetPasswordPage/ForgetPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import AllProductPage from "./pages/AllProductPage/AllProductPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/forget-password" element={<ForgetPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/products" element={<AllProductPage />} />
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
       </Routes>
       <Footer />
     </>
