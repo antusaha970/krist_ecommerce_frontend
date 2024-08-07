@@ -75,18 +75,20 @@ const ProductDetails = () => {
               </ul>
             </div>
             <div className="details col-md-6 col-sm-12 col-12">
-              <h3 className="product-title"> {product.title} </h3>
+              <h3 className="product-title"> {product?.title} </h3>
               <div className="rating">
                 <span className="review-no">
-                  Rating: {product.rating}{" "}
+                  Rating: {product?.rating}{" "}
                   <span className="fa fa-star checked" />
                 </span>
               </div>
-              <p className="product-description">{product.description}</p>
+              <p className="product-description">{product?.description}</p>
               <h4 className="price">
-                current price: <span>${product.price}</span>
+                current price: <span>${product?.price}</span>
               </h4>
-              <p className="vote">Category: {product.categories.join(", ")}</p>
+              <p className="vote">
+                Category: {product?.categories?.join(", ")}
+              </p>
               <h5 className="sizes">
                 sizes:
                 {product?.sizes?.map((size) => (
@@ -113,7 +115,7 @@ const ProductDetails = () => {
                   </span>
                 ))}
               </h5>
-              <h5 className="sizes">In stock : {product.stock} </h5>
+              <h5 className="sizes">In stock : {product?.stock} </h5>
               <div className="action">
                 <button className="base_button_2 me-2" type="button">
                   Add to cart <i className="fa-solid fa-cart-shopping"></i>
