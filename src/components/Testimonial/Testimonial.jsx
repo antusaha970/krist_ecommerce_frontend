@@ -56,7 +56,7 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <section className="container my-5 ">
+    <section className="container m_top_bottom ">
       <div>
         <h2 className="fw-bold text-center mb-3">
           What our customer say <i className="fa-solid fa-comment"></i>

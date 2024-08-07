@@ -1,3 +1,4 @@
+import BestSeller from "../BestSeller/BestSeller";
 import DealsCounter from "../DealsCounter/DealsCounter";
 import Hero from "../Hero/Hero";
 import InstaStory from "../InstaStory/InstaStory";
@@ -9,6 +10,7 @@ const Home = () => {
     <>
       <Hero />
       <ShopByCategorySlider />
+      <BestSeller />
       <DealsCounter />
       <Testimonial />
       <InstaStory />

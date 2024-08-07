@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import client from "../../api_client/api_client";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(false);
@@ -13,6 +14,7 @@ const RegisterForm = () => {
   const [error_address, setError_address] = useState("");
   const [error_email, setError_email] = useState("");
   const [error_password, setError_password] = useState("");
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     setError_address("");
@@ -38,6 +40,7 @@ const RegisterForm = () => {
           "access_token",
           JSON.stringify(user_data.access_token)
         );
+        navigate("/");
       } else {
         toast.warning("Registration failed!! please try again later");
       }
