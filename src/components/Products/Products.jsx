@@ -3,6 +3,7 @@ import client from "../../api_client/api_client";
 import ProductCard from "../Shared/ProductCard/ProductCard";
 import "./Products.css";
 import Loader from "../Shared/Loader/Loader";
+import OurService from "../Shared/OurService/OurService";
 
 const Products = () => {
   const [products, setProducts] = useState({});
@@ -64,12 +65,15 @@ const Products = () => {
   }, [selectedCategories, selectedColors, selectedSize, selectedPage]);
 
   const handleChangeCategoryForFilter = (category) => {
+    setSelectedPage(1);
     setSelectedCategories(category);
   };
   const handleChangeColorForFilter = (color) => {
+    setSelectedPage(1);
     setSelectedColors(color);
   };
   const handleChangeSizeForFilter = (size) => {
+    setSelectedPage(1);
     setSelectedSize(size);
   };
 
@@ -305,6 +309,8 @@ const Products = () => {
           </div>
         )}
       </div>
+
+      <OurService />
     </section>
   );
 };

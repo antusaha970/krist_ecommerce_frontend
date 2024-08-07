@@ -1,8 +1,8 @@
 import "./instastory.css";
 import s1 from "../../assets/instaStory/s1.jpg";
 import s2 from "../../assets/instaStory/s2.jpeg";
-import s3 from "../../assets/instaStory/s3.jpeg";
 import s4 from "../../assets/instaStory/s4.jpg";
+import OurService from "../Shared/OurService/OurService";
 const InstaStory = () => {
   return (
     <section className="container m_top_bottom">
@@ -49,28 +49,7 @@ const InstaStory = () => {
           </a>
         </div>
       </div>
-      <div className="row mt-5">
-        <div className="col-md-3 col-12 col-sm-4">
-          <i className="fa-solid fa-truck-fast icon_ints mb-2"></i>
-          <h5 className="fw-bold">Free Shipping</h5>
-          <p>Free shipping on orders 150$+</p>
-        </div>
-        <div className="col-md-3 col-12 col-sm-4">
-          <i className="fa-solid fa-dollar-sign icon_ints mb-2"></i>
-          <h5 className="fw-bold">Money Guarantee</h5>
-          <p>Free shipping on orders 150$+</p>
-        </div>
-        <div className="col-md-3 col-12 col-sm-4">
-          <i className="fa-solid fa-headset icon_ints mb-2"></i>
-          <h5 className="fw-bold">Online support</h5>
-          <p>24 hours a day,7days a week</p>
-        </div>
-        <div className="col-md-3 col-12 col-sm-4">
-          <i className="fa-solid fa-credit-card icon_ints mb-2"></i>
-          <h5 className="fw-bold">Flexible Payment</h5>
-          <p>Pay with multiple credit card</p>
-        </div>
-      </div>
+      <OurService />
     </section>
   );
 };
