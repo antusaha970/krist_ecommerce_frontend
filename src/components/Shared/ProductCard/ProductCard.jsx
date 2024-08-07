@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./ProductCard.css";
 const ProductCard = ({ product }) => {
   return (
@@ -33,7 +34,7 @@ const ProductCard = ({ product }) => {
             <li className="fas fa-star disable" />
           </ul>
           <h3 className="title">
-            <a href="#"> {product.title} </a>
+            <Link to={`/products/${product.id}`}> {product.title} </Link>
           </h3>
           <div className="price">${product.price} </div>
           <div className="product-button-group">
