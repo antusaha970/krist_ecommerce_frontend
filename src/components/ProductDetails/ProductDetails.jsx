@@ -2,6 +2,17 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import client from "../../api_client/api_client";
 import "./ProductDetails.css";
+import Slider from "react-slick";
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 1500,
+};
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -21,59 +32,26 @@ const ProductDetails = () => {
     };
     getProduct(id);
   }, [id]);
-  console.log(product);
 
   return (
     <div className="container">
       <div className="card">
         <div className="container-fliud">
           <div className="wrapper row">
+            {/* product images box */}
             <div className="preview col-md-6 col-sm-12 col-12">
-              <div className="preview-pic tab-content">
-                <div className="tab-pane active" id="pic-1">
-                  <img src="http://placekitten.com/400/252" />
-                </div>
-                <div className="tab-pane" id="pic-2">
-                  <img src="http://placekitten.com/400/252" />
-                </div>
-                <div className="tab-pane" id="pic-3">
-                  <img src="http://placekitten.com/400/252" />
-                </div>
-                <div className="tab-pane" id="pic-4">
-                  <img src="http://placekitten.com/400/252" />
-                </div>
-                <div className="tab-pane" id="pic-5">
-                  <img src="http://placekitten.com/400/252" />
-                </div>
+              <div className="slider-container">
+                <Slider {...settings}>
+                  {product?.product_images?.map((pd_img, idx) => (
+                    <div key={idx}>
+                      <img src={pd_img.images} alt="" className="img-fluid" />
+                    </div>
+                  ))}
+                </Slider>
               </div>
-              <ul className="preview-thumbnail nav nav-tabs">
-                <li className="active">
-                  <a data-target="#pic-1" data-toggle="tab">
-                    <img src="http://placekitten.com/200/126" />
-                  </a>
-                </li>
-                <li>
-                  <a data-target="#pic-2" data-toggle="tab">
-                    <img src="http://placekitten.com/200/126" />
-                  </a>
-                </li>
-                <li>
-                  <a data-target="#pic-3" data-toggle="tab">
-                    <img src="http://placekitten.com/200/126" />
-                  </a>
-                </li>
-                <li>
-                  <a data-target="#pic-4" data-toggle="tab">
-                    <img src="http://placekitten.com/200/126" />
-                  </a>
-                </li>
-                <li>
-                  <a data-target="#pic-5" data-toggle="tab">
-                    <img src="http://placekitten.com/200/126" />
-                  </a>
-                </li>
-              </ul>
             </div>
+            {/* product images box */}
+            {/* product details box */}
             <div className="details col-md-6 col-sm-12 col-12">
               <h3 className="product-title"> {product?.title} </h3>
               <div className="rating">
@@ -126,6 +104,7 @@ const ProductDetails = () => {
                 </button>
               </div>
             </div>
+            {/* product details box */}
           </div>
         </div>
       </div>
