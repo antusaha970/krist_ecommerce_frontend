@@ -12,10 +12,13 @@ import ForgetPasswordPage from "./pages/ForgetPasswordPage/ForgetPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import AllProductPage from "./pages/AllProductPage/AllProductPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
+import { useState } from "react";
+import { IsLoggedInContext } from "./context/AllContext";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <>
+    <IsLoggedInContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
       <ToastContainer />
       <Navbar />
       <Routes>
@@ -28,7 +31,7 @@ function App() {
         <Route path="/products/:id" element={<ProductDetailsPage />} />
       </Routes>
       <Footer />
-    </>
+    </IsLoggedInContext.Provider>
   );
 }
 
