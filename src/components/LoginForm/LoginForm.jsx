@@ -24,7 +24,7 @@ const LoginForm = () => {
           JSON.stringify(user_data.access_token)
         );
         setIsLoading(true);
-        navigate("/");
+        navigate("/profile");
       } else {
         toast.warning("Login failed!! please try again later");
       }

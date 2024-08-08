@@ -4,8 +4,13 @@ import "./Navbar.css";
 import { useContext } from "react";
 import { IsLoggedInContext } from "../../../context/AllContext";
 const Navbar = () => {
-  const [isLoggedIn] = useContext(IsLoggedInContext);
-  console.log(isLoggedIn);
+  const [isLoggedIn, setIsLoading] = useContext(IsLoggedInContext);
+
+  const handleLogout = () => {
+    localStorage.clear("access_token");
+    setIsLoading(false);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg ">
       <div className="container">
@@ -65,12 +70,12 @@ const Navbar = () => {
                   >
                     Profile
                   </Link>
-                  <Link
-                    to={"/register"}
+                  <button
+                    onClick={handleLogout}
                     className="base_button_2 me-2 text-decoration-none"
                   >
                     Logout
-                  </Link>
+                  </button>
                 </>
               )}
               {!isLoggedIn && (
