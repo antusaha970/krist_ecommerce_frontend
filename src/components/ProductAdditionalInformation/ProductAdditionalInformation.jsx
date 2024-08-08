@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import client from "../../api_client/api_client";
 import SingleReviewCard from "../SingleReviewCard/SingleReviewCard";
+import AddReviewForm from "../AddReviewForm/AddReviewForm";
 
 const ProductAdditionalInformation = ({ product }) => {
   const [reviews, setReviews] = useState([]);
@@ -100,6 +101,8 @@ const ProductAdditionalInformation = ({ product }) => {
               <SingleReviewCard key={review.id} review={review} />
             ))}
           </div>
+
+          <AddReviewForm />
         </div>
         {/* customer reviews */}
       </div>
