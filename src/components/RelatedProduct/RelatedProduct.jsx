@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import client from "../../api_client/api_client";
 import ProductCard from "../Shared/ProductCard/ProductCard";
+import Loader from "../Shared/Loader/Loader";
 
 const RelatedProduct = ({ categories }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -22,6 +23,7 @@ const RelatedProduct = ({ categories }) => {
   return (
     <section className="m_top_bottom">
       <h4 className="fs-2 mb-2">Related products</h4>
+      {isLoading && <Loader />}
       {!isLoading && (
         <div className="row">
           {relatedProducts?.map((product) => (

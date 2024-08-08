@@ -112,10 +112,9 @@ const ProductDetails = () => {
         </div>
       </div>
       {/* product card */}
+
       {/* product additional information */}
-
       {!isLoading && <ProductAdditionalInformation product={product} />}
-
       {/* product additional information */}
 
       {/* Related product */}
