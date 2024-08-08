@@ -5,7 +5,7 @@ import "./ProductDetails.css";
 import Slider from "react-slick";
 import ProductAdditionalInformation from "../ProductAdditionalInformation/ProductAdditionalInformation";
 import RelatedProduct from "../RelatedProduct/RelatedProduct";
-
+import OurService from "../Shared/OurService/OurService";
 const settings = {
   dots: true,
   infinite: true,
@@ -120,6 +120,12 @@ const ProductDetails = () => {
       {/* Related product */}
       {!isLoading && <RelatedProduct categories={product?.categories} />}
       {/* Related product */}
+
+      {/* Our service */}
+      <div className="mb-5">
+        <OurService />
+      </div>
+      {/* Our service */}
     </div>
   );
 };
