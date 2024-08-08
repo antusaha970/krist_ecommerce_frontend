@@ -4,6 +4,7 @@ import client from "../../api_client/api_client";
 import "./ProductDetails.css";
 import Slider from "react-slick";
 import ProductAdditionalInformation from "../ProductAdditionalInformation/ProductAdditionalInformation";
+import RelatedProduct from "../RelatedProduct/RelatedProduct";
 
 const settings = {
   dots: true,
@@ -116,6 +117,10 @@ const ProductDetails = () => {
       {!isLoading && <ProductAdditionalInformation product={product} />}
 
       {/* product additional information */}
+
+      {/* Related product */}
+      {!isLoading && <RelatedProduct categories={product?.categories} />}
+      {/* Related product */}
     </div>
   );
 };
