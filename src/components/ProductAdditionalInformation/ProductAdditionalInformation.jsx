@@ -22,8 +22,6 @@ const ProductAdditionalInformation = ({ product }) => {
     }
   }, [product]);
 
-  console.log(reviews);
-
   return (
     <div className="m_top_bottom">
       <div>
@@ -102,7 +100,7 @@ const ProductAdditionalInformation = ({ product }) => {
             ))}
           </div>
 
-          <AddReviewForm />
+          {product && product.id && <AddReviewForm productId={product.id} />}
         </div>
         {/* customer reviews */}
       </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-const AddReviewForm = () => {
+const AddReviewForm = ({ productId }) => {
   const { register, handleSubmit } = useForm();
 
   const [loading, setLoading] = useState(false);
