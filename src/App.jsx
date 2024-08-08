@@ -13,34 +13,37 @@ import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
 import AllProductPage from "./pages/AllProductPage/AllProductPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import { useState } from "react";
-import { IsLoggedInContext } from "./context/AllContext";
+import { AccountInfoContext, IsLoggedInContext } from "./context/AllContext";
 import PrivateRoute from "./components/Shared/PrivateRoute/PrivateRoute";
 import MyProfilePage from "./pages/MyProfilePage/MyProfilePage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [accountInfo, setAccountInfo] = useState({});
   return (
     <IsLoggedInContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
-      <ToastContainer />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/forget-password" element={<ForgetPasswordPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/products" element={<AllProductPage />} />
-        <Route path="/products/:id" element={<ProductDetailsPage />} />
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute isLoggedIn={isLoggedIn}>
-              <MyProfilePage />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-      <Footer />
+      <AccountInfoContext.Provider value={[accountInfo, setAccountInfo]}>
+        <ToastContainer />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/forget-password" element={<ForgetPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/products" element={<AllProductPage />} />
+          <Route path="/products/:id" element={<ProductDetailsPage />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <MyProfilePage />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+        <Footer />
+      </AccountInfoContext.Provider>
     </IsLoggedInContext.Provider>
   );
 }

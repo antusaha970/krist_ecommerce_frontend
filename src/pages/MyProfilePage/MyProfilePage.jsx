@@ -1,5 +1,11 @@
+import PersonalInfo from "../../components/MyProfileComponents/PersonalInfo/PersonalInfo";
+
 const MyProfilePage = () => {
-  return <div>MyProfilePage</div>;
+  return (
+    <>
+      <PersonalInfo />
+    </>
+  );
 };
 
 export default MyProfilePage;
