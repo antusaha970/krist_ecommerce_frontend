@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import client from "../../api_client/api_client";
+import SingleReviewCard from "../SingleReviewCard/SingleReviewCard";
 
 const ProductAdditionalInformation = ({ product }) => {
-  const [Reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     const getProductReviews = async () => {
@@ -20,7 +21,7 @@ const ProductAdditionalInformation = ({ product }) => {
     }
   }, [product]);
 
-  console.log(Reviews);
+  console.log(reviews);
 
   return (
     <div className="m_top_bottom">
@@ -81,14 +82,26 @@ const ProductAdditionalInformation = ({ product }) => {
         >
           <p className="text_18">{product?.additional_info}</p>
         </div>
+        {/* customer reviews */}
         <div
-          className="tab-pane fade"
+          className="tab-pane fade my-2"
           id="nav-contact"
           role="tabpanel"
           aria-labelledby="nav-contact-tab"
         >
-          else 2
+          <div>
+            <h4 className="fw-bold">
+              Customer reviews <i className="fa-solid fa-star"></i>
+            </h4>
+          </div>
+
+          <div>
+            {reviews?.map((review) => (
+              <SingleReviewCard key={review.id} review={review} />
+            ))}
+          </div>
         </div>
+        {/* customer reviews */}
       </div>
     </div>
   );
