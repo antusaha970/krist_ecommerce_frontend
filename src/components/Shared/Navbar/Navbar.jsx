@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/stock/logo.png";
 import "./Navbar.css";
+import { useContext } from "react";
+import { IsLoggedInContext } from "../../../context/AllContext";
 const Navbar = () => {
+  const [isLoggedIn] = useContext(IsLoggedInContext);
+  console.log(isLoggedIn);
   return (
     <nav className="navbar navbar-expand-lg ">
       <div className="container">
@@ -53,18 +57,38 @@ const Navbar = () => {
               <i className="fa-solid fa-bag-shopping me-4 icon_color nav_icon_size"></i>
             </div>
             <div>
-              <Link
-                to={"/login"}
-                className="base_button_2 me-2 text-decoration-none"
-              >
-                Login
-              </Link>
-              <Link
-                to={"/register"}
-                className="base_button_2 me-2 text-decoration-none"
-              >
-                Register
-              </Link>
+              {isLoggedIn && (
+                <>
+                  <Link
+                    to={"/profile"}
+                    className="base_button_2 me-2 text-decoration-none"
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    to={"/register"}
+                    className="base_button_2 me-2 text-decoration-none"
+                  >
+                    Logout
+                  </Link>
+                </>
+              )}
+              {!isLoggedIn && (
+                <>
+                  <Link
+                    to={"/login"}
+                    className="base_button_2 me-2 text-decoration-none"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to={"/register"}
+                    className="base_button_2 me-2 text-decoration-none"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

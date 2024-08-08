@@ -14,6 +14,8 @@ import AllProductPage from "./pages/AllProductPage/AllProductPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import { useState } from "react";
 import { IsLoggedInContext } from "./context/AllContext";
+import PrivateRoute from "./components/Shared/PrivateRoute/PrivateRoute";
+import MyProfilePage from "./pages/MyProfilePage/MyProfilePage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +31,14 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/products" element={<AllProductPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute isLoggedIn={isLoggedIn}>
+              <MyProfilePage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </IsLoggedInContext.Provider>
