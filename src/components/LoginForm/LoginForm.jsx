@@ -3,12 +3,14 @@ import login_img from "../../assets/stock/login.png";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import client from "../../api_client/api_client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { IsLoggedInContext } from "../../context/AllContext";
 const LoginForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [, setIsLoading] = useContext(IsLoggedInContext);
 
   const onSubmit = async (data) => {
     try {
@@ -21,6 +23,7 @@ const LoginForm = () => {
           "access_token",
           JSON.stringify(user_data.access_token)
         );
+        setIsLoading(true);
         navigate("/");
       } else {
         toast.warning("Login failed!! please try again later");
