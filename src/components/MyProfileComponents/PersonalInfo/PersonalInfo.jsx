@@ -2,24 +2,36 @@ import { useContext, useState } from "react";
 import { AccountInfoContext } from "../../../context/AllContext";
 import dummyAvatar from "../../../assets/stock/profile_placeholder.webp";
 import "./PersonalInfo.css";
-import { Link, NavLink } from "react-router-dom";
 import ProfileNavigation from "../ProfileNavigation/ProfileNavigation";
-import { useForm } from "react-hook-form";
+import client from "../../../api_client/api_client";
+import { toast } from "react-toastify";
 
 const PersonalInfo = () => {
   const [accountInfo, setAccountInfo] = useContext(AccountInfoContext);
 
   const [loading, setLoading] = useState(false);
   const [formDisabled, setFormDisabled] = useState(true);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = document.getElementById("email").value;
     const first_name = document.getElementById("first_name").value;
     const last_name = document.getElementById("last_name").value;
     const phone_number = document.getElementById("phone_number").value;
     const address = document.getElementById("address").value;
-    const data = { email, first_name, last_name, phone_number, address };
-    console.log(data);
+    const data = { first_name, last_name, phone_number, address };
+    try {
+      setLoading(true);
+      const response = await client.put("/api/accounts/me/", data);
+      if (response.status == 200) {
+        toast.success("Your information has been updated");
+        const newData = { email: accountInfo.email, ...response.data };
+        setAccountInfo(newData);
+        setFormDisabled(true);
+      }
+    } catch (error) {
+      console.error({ error });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleEditProfile = () => {
@@ -38,7 +50,7 @@ const PersonalInfo = () => {
         </div>
         <div className="col-md-8 col-12 col-sm-8">
           <h5 className="mb-3">My information</h5>
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex mb-2 justify-content-between align-items-center">
             <div className="profile_avatar">
               <img src={dummyAvatar} alt="avatar" className="img-fluid" />
             </div>
@@ -121,9 +133,14 @@ const PersonalInfo = () => {
                 disabled={formDisabled}
               />
             </div>
-            {!formDisabled && (
+            {!formDisabled && !loading && (
               <button className="base_button" type="submit">
                 Update
+              </button>
+            )}
+            {!formDisabled && loading && (
+              <button className="base_button" disabled>
+                Updating...
               </button>
             )}
           </form>
