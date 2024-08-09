@@ -29,7 +29,7 @@ const ProfileNavigation = () => {
         </Link>
       </div>
       <div className="profile_navigation">
-        <Link>
+        <Link to={"/profile/wishlist"}>
           <i className="fa-solid fa-heart me-3"></i> My Wishlist
         </Link>
       </div>
