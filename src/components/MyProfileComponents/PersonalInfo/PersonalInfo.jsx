@@ -8,10 +8,17 @@ import { useForm } from "react-hook-form";
 
 const PersonalInfo = () => {
   const [accountInfo, setAccountInfo] = useContext(AccountInfoContext);
-  const { register, handleSubmit } = useForm();
+
   const [loading, setLoading] = useState(false);
   const [formDisabled, setFormDisabled] = useState(true);
-  const onSubmit = (data) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const first_name = document.getElementById("first_name").value;
+    const last_name = document.getElementById("last_name").value;
+    const phone_number = document.getElementById("phone_number").value;
+    const address = document.getElementById("address").value;
+    const data = { email, first_name, last_name, phone_number, address };
     console.log(data);
   };
 
@@ -43,7 +50,7 @@ const PersonalInfo = () => {
           </div>
 
           {/* profile information form */}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
                 Email *
@@ -54,7 +61,6 @@ const PersonalInfo = () => {
                 id="email"
                 placeholder="Enter your email address"
                 required
-                {...register("email")}
                 defaultValue={accountInfo.email}
                 disabled={formDisabled}
               />
@@ -69,7 +75,6 @@ const PersonalInfo = () => {
                 id="first_name"
                 placeholder="Enter your first name"
                 required
-                {...register("first_name")}
                 defaultValue={accountInfo.first_name}
                 disabled={formDisabled}
               />
@@ -84,7 +89,6 @@ const PersonalInfo = () => {
                 id="last_name"
                 placeholder="Enter your last name"
                 required
-                {...register("last_name")}
                 defaultValue={accountInfo.last_name}
                 disabled={formDisabled}
               />
@@ -99,7 +103,6 @@ const PersonalInfo = () => {
                 id="phone_number"
                 placeholder="Enter your last name"
                 required
-                {...register("phone_number")}
                 defaultValue={accountInfo.phone_number}
                 disabled={formDisabled}
               />
@@ -114,7 +117,6 @@ const PersonalInfo = () => {
                 id="address"
                 placeholder="Enter your address"
                 required
-                {...register("address")}
                 defaultValue={accountInfo.address}
                 disabled={formDisabled}
               />
