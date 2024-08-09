@@ -1,6 +1,22 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
+import client from "../../../api_client/api_client";
+import { toast } from "react-toastify";
 const ProductCard = ({ product }) => {
+  const handleAddToWishList = async () => {
+    try {
+      const data = { products: product.id };
+      const response = await client.post("/api/wishlist/", data);
+      if (response.status == 201) {
+        toast.success("Added to your wish list");
+      }
+    } catch (error) {
+      console.error({ error });
+      if (error.response.status == 304) {
+        toast.warning("Already added to wish list");
+      }
+    }
+  };
   return (
     <div className="col-md-3 col-sm-6 col-12">
       <div className="product-grid">
@@ -38,9 +54,12 @@ const ProductCard = ({ product }) => {
           </h3>
           <div className="price">${product.price} </div>
           <div className="product-button-group">
-            <a className="product-like-icon" href="#">
+            <p
+              className="product-like-icon wish_list_icon"
+              onClick={handleAddToWishList}
+            >
               <i className="fas fa-heart" />
-            </a>
+            </p>
             <div className="add-to-cart" href="#">
               <i className="fa fa-shopping-bag" />
               ADD TO CART

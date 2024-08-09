@@ -46,7 +46,7 @@ const ProductDetails = () => {
     } catch (error) {
       console.error({ error });
       if (error.response.status == 304) {
-        toast.warning("All ready added to wish list");
+        toast.warning("Already added to wish list");
       }
     }
   };
