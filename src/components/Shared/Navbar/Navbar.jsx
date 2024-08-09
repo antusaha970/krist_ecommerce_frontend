@@ -57,10 +57,15 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="d-flex align-items-center g-4">
-            <div className="me-3">
-              <i className="fa-regular fa-heart me-4 icon_color nav_icon_size"></i>
-              <i className="fa-solid fa-bag-shopping me-4 icon_color nav_icon_size"></i>
-            </div>
+            {isLoggedIn && (
+              <div className="me-3">
+                <Link
+                  to={"/profile/wishlist"}
+                  className="fa-regular fa-heart me-4 icon_color nav_icon_size fa-i-cursor text-decoration-none"
+                ></Link>
+                <i className="fa-solid fa-bag-shopping me-4 icon_color nav_icon_size"></i>
+              </div>
+            )}
             <div>
               {isLoggedIn && (
                 <>
