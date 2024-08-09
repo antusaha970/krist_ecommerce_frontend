@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import ProductAdditionalInformation from "../ProductAdditionalInformation/ProductAdditionalInformation";
 import RelatedProduct from "../RelatedProduct/RelatedProduct";
 import OurService from "../Shared/OurService/OurService";
+import { toast } from "react-toastify";
 const settings = {
   dots: true,
   infinite: true,
@@ -34,6 +35,21 @@ const ProductDetails = () => {
     };
     getProduct(id);
   }, [id]);
+
+  const handleAddToWishList = async () => {
+    try {
+      const data = { products: product.id };
+      const response = await client.post("/api/wishlist/", data);
+      if (response.status == 201) {
+        toast.success("Added to your wish list");
+      }
+    } catch (error) {
+      console.error({ error });
+      if (error.response.status == 304) {
+        toast.warning("All ready added to wish list");
+      }
+    }
+  };
 
   return (
     <div className="container">
@@ -102,7 +118,11 @@ const ProductDetails = () => {
                   Add to cart <i className="fa-solid fa-cart-shopping"></i>
                 </button>
 
-                <button className="base_button" type="button">
+                <button
+                  className="base_button"
+                  type="button"
+                  onClick={handleAddToWishList}
+                >
                   <span className="fa fa-heart" />
                 </button>
               </div>
