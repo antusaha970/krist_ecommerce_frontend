@@ -1,7 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/stock/logo.png";
 import "./Navbar.css";
+import { useContext } from "react";
+import { IsLoggedInContext } from "../../../context/AllContext";
 const Navbar = () => {
+  const [isLoggedIn, setIsLoading] = useContext(IsLoggedInContext);
+
+  const handleLogout = () => {
+    localStorage.clear("access_token");
+    setIsLoading(false);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg ">
       <div className="container">
@@ -48,23 +57,48 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="d-flex align-items-center g-4">
-            <div className="me-3">
-              <i className="fa-regular fa-heart me-4 icon_color nav_icon_size"></i>
-              <i className="fa-solid fa-bag-shopping me-4 icon_color nav_icon_size"></i>
-            </div>
+            {isLoggedIn && (
+              <div className="me-3">
+                <Link
+                  to={"/profile/wishlist"}
+                  className="fa-regular fa-heart me-4 icon_color nav_icon_size fa-i-cursor text-decoration-none"
+                ></Link>
+                <i className="fa-solid fa-bag-shopping me-4 icon_color nav_icon_size"></i>
+              </div>
+            )}
             <div>
-              <Link
-                to={"/login"}
-                className="base_button_2 me-2 text-decoration-none"
-              >
-                Login
-              </Link>
-              <Link
-                to={"/register"}
-                className="base_button_2 me-2 text-decoration-none"
-              >
-                Register
-              </Link>
+              {isLoggedIn && (
+                <>
+                  <Link
+                    to={"/profile"}
+                    className="base_button_2 me-2 text-decoration-none"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="base_button_2 me-2 text-decoration-none"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
+              {!isLoggedIn && (
+                <>
+                  <Link
+                    to={"/login"}
+                    className="base_button_2 me-2 text-decoration-none"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to={"/register"}
+                    className="base_button_2 me-2 text-decoration-none"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -1,0 +1,27 @@
+.profile_avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profile_navigation {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.profile_navigation:hover {
+  background: #131118;
+}
+.profile_navigation:hover > a {
+  color: #fff;
+}
+
+.profile_navigation > a {
+  color: #29272e;
+  text-decoration: none;
+  font-size: 18px;
+}
