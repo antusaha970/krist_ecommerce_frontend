@@ -18,8 +18,9 @@ import PrivateRoute from "./components/Shared/PrivateRoute/PrivateRoute";
 import MyProfilePage from "./pages/MyProfilePage/MyProfilePage";
 import MyWishListPage from "./pages/MyWishListPage/MyWishListPage";
 import ManageAddressPage from "./pages/ManageAddressPage/ManageAddressPage";
-
+import Modal from "react-modal";
 function App() {
+  Modal.setAppElement("#root");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [accountInfo, setAccountInfo] = useState({});
   return (
