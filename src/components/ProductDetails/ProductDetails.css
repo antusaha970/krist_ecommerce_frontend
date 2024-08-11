@@ -81,13 +81,6 @@
   flex-direction: column;
 }
 
-.colors {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
 .product-title,
 .price,
 .sizes,

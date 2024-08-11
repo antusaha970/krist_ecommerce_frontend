@@ -65,7 +65,7 @@ const ShopByCategorySlider = () => {
       <div className="slider-container">
         <Slider {...settings}>
           {allCategory?.map((category) => (
-            <div key={category.id}>
+            <div key={category.name}>
               <div className="category_box">
                 <h3 className="category_title">{category.name}</h3>
               </div>
