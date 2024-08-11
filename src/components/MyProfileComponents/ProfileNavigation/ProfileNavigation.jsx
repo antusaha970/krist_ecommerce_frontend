@@ -34,7 +34,7 @@ const ProfileNavigation = () => {
         </Link>
       </div>
       <div className="profile_navigation ">
-        <Link>
+        <Link to={"/profile/manage_address"}>
           <i className="fa-solid fa-location-dot me-3"></i> Manage Address
         </Link>
       </div>

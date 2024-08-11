@@ -17,6 +17,7 @@ import { AccountInfoContext, IsLoggedInContext } from "./context/AllContext";
 import PrivateRoute from "./components/Shared/PrivateRoute/PrivateRoute";
 import MyProfilePage from "./pages/MyProfilePage/MyProfilePage";
 import MyWishListPage from "./pages/MyWishListPage/MyWishListPage";
+import ManageAddressPage from "./pages/ManageAddressPage/ManageAddressPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,6 +48,14 @@ function App() {
             element={
               <PrivateRoute isLoggedIn={isLoggedIn}>
                 <MyWishListPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile/manage_address"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <ManageAddressPage />
               </PrivateRoute>
             }
           />
