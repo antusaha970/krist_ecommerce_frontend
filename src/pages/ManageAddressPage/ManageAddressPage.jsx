@@ -1,5 +1,11 @@
+import ManageAddress from "../../components/MyProfileComponents/ManageAddress/ManageAddress";
+
 const ManageAddressPage = () => {
-  return <div>ManageAddressPage</div>;
+  return (
+    <>
+      <ManageAddress />
+    </>
+  );
 };
 
 export default ManageAddressPage;
