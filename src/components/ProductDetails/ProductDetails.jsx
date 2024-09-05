@@ -25,7 +25,6 @@ const ProductDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn] = useContext(IsLoggedInContext);
   const navigate = useNavigate();
-  console.log({ isLoggedIn });
   useEffect(() => {
     const getProduct = async (id) => {
       try {

@@ -1,20 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 import client from "../../../api_client/api_client";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { IsLoggedInContext } from "../../../context/AllContext";
 const ProductCard = ({ product }) => {
+  const [isLoggedIn] = useContext(IsLoggedInContext);
+  const navigate = useNavigate();
   const handleAddToWishList = async () => {
-    try {
-      const data = { products: product.id };
-      const response = await client.post("/api/wishlist/", data);
-      if (response.status == 201) {
-        toast.success("Added to your wish list");
+    if (isLoggedIn) {
+      try {
+        const data = { products: product.id };
+        const response = await client.post("/api/wishlist/", data);
+        if (response.status == 201) {
+          toast.success("Added to your wish list");
+        }
+      } catch (error) {
+        console.error({ error });
+        if (error.response.status == 304) {
+          toast.warning("Already added to wish list");
+        }
       }
-    } catch (error) {
-      console.error({ error });
-      if (error.response.status == 304) {
-        toast.warning("Already added to wish list");
+    } else {
+      navigate("/login");
+    }
+  };
+  const handleAddToCart = async () => {
+    if (isLoggedIn) {
+      try {
+        const data = { product: product?.id };
+        const response = await client.post("/api/cart/", data);
+        if (response.status == 201) {
+          toast.success("Added product to cart");
+        }
+      } catch (error) {
+        console.error({ error });
+        if (error.response.status == 304) {
+          toast.warning("Already added to cart");
+        }
       }
+    } else {
+      toast.info("Please login first");
+      navigate("/login");
     }
   };
   return (
@@ -60,7 +87,7 @@ const ProductCard = ({ product }) => {
             >
               <i className="fas fa-heart" />
             </p>
-            <div className="add-to-cart" href="#">
+            <div className="add-to-cart" onClick={handleAddToCart}>
               <i className="fa fa-shopping-bag" />
               ADD TO CART
             </div>
