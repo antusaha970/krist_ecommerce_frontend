@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import client from "../../api_client/api_client";
 import "./ProductDetails.css";
 import Slider from "react-slick";
@@ -8,6 +8,7 @@ import RelatedProduct from "../RelatedProduct/RelatedProduct";
 import OurService from "../Shared/OurService/OurService";
 import { toast } from "react-toastify";
 import Loader from "../Shared/Loader/Loader";
+import { IsLoggedInContext } from "../../context/AllContext";
 const settings = {
   dots: true,
   infinite: true,
@@ -22,6 +23,9 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn] = useContext(IsLoggedInContext);
+  const navigate = useNavigate();
+  console.log({ isLoggedIn });
   useEffect(() => {
     const getProduct = async (id) => {
       try {
@@ -38,32 +42,42 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleAddToWishList = async () => {
-    try {
-      const data = { products: product.id };
-      const response = await client.post("/api/wishlist/", data);
-      if (response.status == 201) {
-        toast.success("Added to your wish list");
+    if (isLoggedIn) {
+      try {
+        const data = { products: product.id };
+        const response = await client.post("/api/wishlist/", data);
+        if (response.status == 201) {
+          toast.success("Added to your wish list");
+        }
+      } catch (error) {
+        console.error({ error });
+        if (error.response.status == 304) {
+          toast.warning("Already added to wish list");
+        }
       }
-    } catch (error) {
-      console.error({ error });
-      if (error.response.status == 304) {
-        toast.warning("Already added to wish list");
-      }
+    } else {
+      toast.info("Please login first");
+      navigate("/login");
     }
   };
 
   const handleAddToCart = async () => {
-    try {
-      const data = { product: product.id };
-      const response = await client.post("/api/cart/", data);
-      if (response.status == 201) {
-        toast.success("Added product to cart");
+    if (isLoggedIn) {
+      try {
+        const data = { product: product.id };
+        const response = await client.post("/api/cart/", data);
+        if (response.status == 201) {
+          toast.success("Added product to cart");
+        }
+      } catch (error) {
+        console.error({ error });
+        if (error.response.status == 304) {
+          toast.warning("Already added to cart");
+        }
       }
-    } catch (error) {
-      console.error({ error });
-      if (error.response.status == 304) {
-        toast.warning("Already added to cart");
-      }
+    } else {
+      toast.info("Please login first");
+      navigate("/login");
     }
   };
 
