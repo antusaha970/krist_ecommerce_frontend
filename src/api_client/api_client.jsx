@@ -17,4 +17,6 @@ client.interceptors.request.use(
   }
 );
 
+export const backendURL = "http://localhost:8000/";
+
 export default client;
