@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import client from "../../api_client/api_client";
 import "./ShopByCategory.css";
 import Loader from "../Shared/Loader/Loader";
+import { Link } from "react-router-dom";
 const settings = {
   dots: true,
   infinite: true,
@@ -67,7 +68,9 @@ const ShopByCategorySlider = () => {
           {allCategory?.map((category) => (
             <div key={category.name}>
               <div className="category_box">
-                <h3 className="category_title">{category.name}</h3>
+                <h3 className="category_title">
+                  <Link to={"/products"}>{category.name}</Link>
+                </h3>
               </div>
             </div>
           ))}

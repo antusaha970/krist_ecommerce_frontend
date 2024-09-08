@@ -13,6 +13,8 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    maxHeight: "80vh",
+    overflowY: "auto",
   },
 };
 const Cart = ({ modalIsOpen, setIsOpen }) => {
@@ -58,14 +60,14 @@ const Cart = ({ modalIsOpen, setIsOpen }) => {
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="Example Modal"
+      contentLabel="cart Modal"
     >
       <button onClick={closeModal} className="base_button mb-2">
         close
       </button>
       {isLoading && <Loader />}
 
-      <section>
+      <section className="cart_section">
         <h4>You have {cartItems.length} items in your Cart</h4>
 
         {cartItems?.map((item) => (
