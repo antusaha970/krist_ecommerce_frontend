@@ -15,12 +15,14 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     maxHeight: "80vh",
     overflowY: "auto",
+    zIndex: "10",
   },
 };
 const Cart = ({ modalIsOpen, setIsOpen }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [changed, setChanged] = useState(true);
+  const [Subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
     const getCartItems = async () => {
@@ -37,8 +39,6 @@ const Cart = ({ modalIsOpen, setIsOpen }) => {
     getCartItems();
   }, [changed]);
 
-  console.log(cartItems);
-
   function closeModal() {
     setIsOpen(false);
   }
@@ -54,6 +54,15 @@ const Cart = ({ modalIsOpen, setIsOpen }) => {
       console.error({ error });
     }
   };
+
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      const sum = cartItems.reduce((val, pd) => {
+        return val + parseFloat(pd.product.price);
+      }, 0);
+      setSubtotal(sum);
+    }
+  }, [cartItems]);
 
   return (
     <Modal
@@ -97,6 +106,9 @@ const Cart = ({ modalIsOpen, setIsOpen }) => {
             </div>
           </div>
         ))}
+        <hr />
+        <h5 className="fw-bold">Subtotal: ${Subtotal} </h5>
+        <button className="base_button_2 w-100">Checkout</button>
       </section>
     </Modal>
   );
