@@ -38,6 +38,11 @@ const Checkout = () => {
       setItemToOrder(items);
     }
   };
+
+  const handleProceedCheckout = () => {
+    alert();
+  };
+
   return (
     <section className="container my-5">
       <h2 className="mb-2">Checkout</h2>
@@ -78,7 +83,7 @@ const Checkout = () => {
                     +
                   </button>
                 </div>
-                <p className="fw-bold">
+                <p className="fw-bold mt-2">
                   Subtotal: ${item.product.price * itemToOrder[ind]?.quantity}
                 </p>
               </div>
@@ -88,7 +93,12 @@ const Checkout = () => {
         </div>
         <div className="col-12 col-sm-4 col-md-4">
           <h3 className="fw-bold">Grand total: ${grandTotal} </h3>
-          <button className="base_button_2 mt-3">Proceed to checkout</button>
+          <button
+            className="base_button_2 mt-3"
+            onClick={handleProceedCheckout}
+          >
+            Proceed to checkout
+          </button>
         </div>
       </div>
     </section>
