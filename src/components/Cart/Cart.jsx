@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 import client from "../../api_client/api_client";
 import Loader from "../Shared/Loader/Loader";
 import "./cart.css";
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import { CartItemContext } from "../../context/AllContext";
 
 const customStyles = {
   content: {
@@ -19,10 +21,11 @@ const customStyles = {
   },
 };
 const Cart = ({ modalIsOpen, setIsOpen }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useContext(CartItemContext);
   const [isLoading, setIsLoading] = useState(false);
   const [changed, setChanged] = useState(true);
   const [Subtotal, setSubtotal] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getCartItems = async () => {
@@ -63,6 +66,11 @@ const Cart = ({ modalIsOpen, setIsOpen }) => {
       setSubtotal(sum);
     }
   }, [cartItems]);
+
+  const goToCheckOut = () => {
+    setIsOpen(false);
+    navigate("/order/checkout");
+  };
 
   return (
     <Modal
@@ -108,7 +116,9 @@ const Cart = ({ modalIsOpen, setIsOpen }) => {
         ))}
         <hr />
         <h5 className="fw-bold">Subtotal: ${Subtotal} </h5>
-        <button className="base_button_2 w-100">Checkout</button>
+        <button onClick={goToCheckOut} className="base_button_2 w-100">
+          Checkout
+        </button>
       </section>
     </Modal>
   );
