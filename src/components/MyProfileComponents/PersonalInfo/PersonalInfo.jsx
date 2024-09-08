@@ -55,9 +55,19 @@ const PersonalInfo = () => {
               <img src={dummyAvatar} alt="avatar" className="img-fluid" />
             </div>
             <div>
-              <button className="base_button_2" onClick={handleEditProfile}>
-                <i className="fa-solid fa-user-pen"></i> Edit profile
-              </button>
+              {formDisabled && (
+                <button className="base_button_2" onClick={handleEditProfile}>
+                  <i className="fa-solid fa-user-pen"></i> Edit profile
+                </button>
+              )}
+              {!formDisabled && (
+                <button
+                  className="base_button_2"
+                  onClick={() => setFormDisabled(true)}
+                >
+                  <i className="fa-solid fa-ban"></i> Cancel
+                </button>
+              )}
             </div>
           </div>
 

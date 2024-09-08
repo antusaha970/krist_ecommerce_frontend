@@ -1,19 +1,28 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/stock/logo.png";
 import "./Navbar.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IsLoggedInContext } from "../../../context/AllContext";
+import Cart from "../../Cart/Cart";
 const Navbar = () => {
   const [isLoggedIn, setIsLoading] = useContext(IsLoggedInContext);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.clear("access_token");
     setIsLoading(false);
   };
 
+  const handleOpenCart = () => {
+    setIsOpen(true);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg ">
       <div className="container">
+        {modalIsOpen && (
+          <Cart modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
+        )}
         <Link className="navbar-brand" to="/">
           <img src={logo} alt="logo" />
         </Link>
@@ -63,7 +72,10 @@ const Navbar = () => {
                   to={"/profile/wishlist"}
                   className="fa-regular fa-heart me-4 icon_color nav_icon_size fa-i-cursor text-decoration-none"
                 ></Link>
-                <i className="fa-solid fa-bag-shopping me-4 icon_color nav_icon_size"></i>
+                <i
+                  className="icon_pointer fa-solid fa-bag-shopping me-4 icon_color nav_icon_size "
+                  onClick={handleOpenCart}
+                ></i>
               </div>
             )}
             <div>

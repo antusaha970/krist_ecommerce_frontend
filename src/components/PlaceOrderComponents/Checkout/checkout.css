@@ -1,0 +1,40 @@
+.check_pd_img {
+  width: 50px;
+  height: 50px;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 0; /* Remove button roundness */
+  font-size: 20px; /* Increase font size for plus/minus sign */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantity-input {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  font-size: 18px;
+  pointer-events: none; /* Disable manual editing */
+}
+
+.quantity-btn:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.quantity-btn:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
