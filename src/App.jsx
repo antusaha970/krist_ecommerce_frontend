@@ -16,6 +16,7 @@ import { useState } from "react";
 import {
   AccountInfoContext,
   CartItemContext,
+  FinalItemsToOrderContext,
   IsLoggedInContext,
 } from "./context/AllContext";
 import PrivateRoute from "./components/Shared/PrivateRoute/PrivateRoute";
@@ -24,60 +25,74 @@ import MyWishListPage from "./pages/MyWishListPage/MyWishListPage";
 import ManageAddressPage from "./pages/ManageAddressPage/ManageAddressPage";
 import Modal from "react-modal";
 import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
+import SelectShippingAddressPage from "./pages/SelectShippingAddressPage/SelectShippingAddressPage";
 function App() {
   Modal.setAppElement("#root");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [accountInfo, setAccountInfo] = useState({});
   const [cartItems, setCartItems] = useState([]);
+  const [finalItemToOrder, setFinalItemToOrder] = useState([]);
 
   return (
     <IsLoggedInContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
       <AccountInfoContext.Provider value={[accountInfo, setAccountInfo]}>
         <CartItemContext.Provider value={[cartItems, setCartItems]}>
-          <ToastContainer />
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/forget-password" element={<ForgetPasswordPage />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
-            <Route path="/products" element={<AllProductPage />} />
-            <Route path="/products/:id" element={<ProductDetailsPage />} />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <MyProfilePage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile/wishlist"
-              element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <MyWishListPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile/manage_address"
-              element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <ManageAddressPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/order/checkout"
-              element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <CheckOutPage />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-          <Footer />
+          <FinalItemsToOrderContext.Provider
+            value={[finalItemToOrder, setFinalItemToOrder]}
+          >
+            <ToastContainer />
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/forget-password" element={<ForgetPasswordPage />} />
+              <Route path="/reset-password" element={<ResetPasswordPage />} />
+              <Route path="/products" element={<AllProductPage />} />
+              <Route path="/products/:id" element={<ProductDetailsPage />} />
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <MyProfilePage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/profile/wishlist"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <MyWishListPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/profile/manage_address"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <ManageAddressPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/order/checkout"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <CheckOutPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/order/shipping_address"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <SelectShippingAddressPage />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+            <Footer />
+          </FinalItemsToOrderContext.Provider>
         </CartItemContext.Provider>
       </AccountInfoContext.Provider>
     </IsLoggedInContext.Provider>

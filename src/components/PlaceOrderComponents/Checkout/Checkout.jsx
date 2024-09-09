@@ -1,12 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import { CartItemContext } from "../../../context/AllContext";
+import {
+  CartItemContext,
+  FinalItemsToOrderContext,
+} from "../../../context/AllContext";
 import { backendURL } from "../../../api_client/api_client";
 import "./checkout.css";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [cartItems] = useContext(CartItemContext);
   const [itemToOrder, setItemToOrder] = useState([]);
   const [grandTotal, setGrandTotal] = useState(0);
+  const [, setFinalItemToOrder] = useContext(FinalItemsToOrderContext);
+  const navigate = useNavigate();
   useEffect(() => {
     const items = [];
     cartItems?.forEach((item) => {
@@ -40,7 +46,8 @@ const Checkout = () => {
   };
 
   const handleProceedCheckout = () => {
-    alert();
+    setFinalItemToOrder(itemToOrder);
+    navigate("/order/shipping_address");
   };
 
   return (
