@@ -26,6 +26,7 @@ import ManageAddressPage from "./pages/ManageAddressPage/ManageAddressPage";
 import Modal from "react-modal";
 import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
 import SelectShippingAddressPage from "./pages/SelectShippingAddressPage/SelectShippingAddressPage";
+import SelectPaymentMethodPage from "./pages/SelectPaymentMethod/SelectPaymentMethodPage";
 function App() {
   Modal.setAppElement("#root");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -87,6 +88,14 @@ function App() {
                 element={
                   <PrivateRoute isLoggedIn={isLoggedIn}>
                     <SelectShippingAddressPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/order/payment_method"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <SelectPaymentMethodPage />
                   </PrivateRoute>
                 }
               />

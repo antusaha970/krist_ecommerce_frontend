@@ -31,7 +31,6 @@ const Checkout = () => {
     setGrandTotal(total);
   }, [itemToOrder]);
 
-  console.log(itemToOrder);
   const handlePlusQuantity = (ind) => {
     const items = [...itemToOrder];
     items[ind].quantity = items[ind].quantity + 1;
