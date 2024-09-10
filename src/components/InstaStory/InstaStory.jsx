@@ -10,42 +10,22 @@ const InstaStory = () => {
       <div className="row">
         <div className="col-12 col-sm-6 col-md-3">
           <a href="">
-            <img
-              src={s1}
-              alt="story"
-              className="img-fluid"
-              data-aos="fade-right"
-            />
+            <img src={s1} alt="story" className="img-fluid" />
           </a>
         </div>
         <div className="col-12 col-sm-6 col-md-3">
           <a href="">
-            <img
-              src={s2}
-              alt="story"
-              className="img-fluid"
-              data-aos="fade-right"
-            />
+            <img src={s2} alt="story" className="img-fluid" />
           </a>
         </div>
         <div className="col-12 col-sm-6 col-md-3">
           <a href="">
-            <img
-              src={s4}
-              alt="story"
-              className="img-fluid"
-              data-aos="fade-left"
-            />
+            <img src={s4} alt="story" className="img-fluid" />
           </a>
         </div>
         <div className="col-12 col-sm-6 col-md-3">
           <a href="">
-            <img
-              src={s2}
-              alt="story"
-              className="img-fluid"
-              data-aos="fade-left"
-            />
+            <img src={s2} alt="story" className="img-fluid" />
           </a>
         </div>
       </div>

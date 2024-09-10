@@ -1,5 +1,6 @@
 import "./hero.css";
 import bannerImg from "../../assets/stock/banner.webp";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -13,9 +14,12 @@ const Hero = () => {
                 Women&apos;s Collection
               </h2>
               <h5 className="">UPTO OFF 40%</h5>
-              <button className="base_button">
+              <Link
+                to={"/products"}
+                className="base_button text-decoration-none"
+              >
                 Shop now <i className="fa-solid fa-arrow-right"></i>
-              </button>
+              </Link>
             </div>
           </div>
           <div className="col-12 col-sm-6 text-center col-md-6">
