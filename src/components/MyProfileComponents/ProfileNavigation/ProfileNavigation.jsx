@@ -24,7 +24,7 @@ const ProfileNavigation = () => {
         </NavLink>
       </div>
       <div className="profile_navigation">
-        <Link>
+        <Link to={"/profile/my_orders/"}>
           <i className="fa-solid fa-box me-3"></i> My Orders
         </Link>
       </div>

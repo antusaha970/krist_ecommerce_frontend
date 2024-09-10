@@ -1,13 +1,29 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import client from "../../api_client/api_client";
+import { toast } from "react-toastify";
 
 const AddReviewForm = ({ productId }) => {
   const { register, handleSubmit } = useForm();
 
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      const response = await client.post(
+        `/api/products/${productId}/product_review/`,
+        data
+      );
+      if (response.status == 201) {
+        toast.success("Review posted successfully");
+      }
+    } catch (error) {
+      console.error({ error });
+      toast.error("There was an error! please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
