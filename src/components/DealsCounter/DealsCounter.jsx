@@ -1,4 +1,5 @@
-import deals from "../../assets/stock/deals.png";
+import { Link } from "react-router-dom";
+import deals from "../../assets/stock/deals.webp";
 const DealsCounter = () => {
   return (
     <section className="container m_top_bottom">
@@ -11,9 +12,9 @@ const DealsCounter = () => {
             qui eligendi dolores modi soluta dicta pariatur, est velit! Unde
             laborum ab sit?
           </p>
-          <button className="base_button_2">
+          <Link to={"/products"} className="base_button_2 text-decoration-none">
             View product <i className="fa-solid fa-arrow-right"></i>
-          </button>
+          </Link>
         </div>
         <div className="col-12 col-sm-12 col-md-6">
           <img
