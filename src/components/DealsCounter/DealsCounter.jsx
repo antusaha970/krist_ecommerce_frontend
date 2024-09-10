@@ -17,12 +17,7 @@ const DealsCounter = () => {
           </Link>
         </div>
         <div className="col-12 col-sm-12 col-md-6">
-          <img
-            src={deals}
-            alt="deals"
-            className="img-fluid"
-            data-aos="fade-left"
-          />
+          <img src={deals} alt="deals" className="img-fluid" />
         </div>
       </div>
     </section>
