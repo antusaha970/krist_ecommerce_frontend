@@ -18,8 +18,6 @@ const MyOrders = () => {
     getAllOrders();
   }, []);
 
-  console.log(MyOrders);
-
   return (
     <section className="container m_top_bottom">
       <h2 className="mb-4">My Orders</h2>

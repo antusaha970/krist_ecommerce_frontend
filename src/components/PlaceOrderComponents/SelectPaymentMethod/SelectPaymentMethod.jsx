@@ -11,7 +11,7 @@ const SelectPaymentMethod = () => {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [finalItemToOrder] = useContext(FinalItemsToOrderContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [cartItems, setCartItems] = useContext(CartItemContext);
+  const [, setCartItems] = useContext(CartItemContext);
   const navigate = useNavigate();
 
   const handlePlaceOrder = async () => {
@@ -37,9 +37,10 @@ const SelectPaymentMethod = () => {
         setIsLoading(true);
         const response = await client.post("/api/orders/", data);
         if (response.status == 201) {
+          client.delete("/api/cart/delete_all/");
           toast.success("Your order has been placed");
           setCartItems([]);
-          navigate("/profile/my-orders/");
+          navigate("/profile/my_orders/");
         }
       } catch (error) {
         console.error({ error });
