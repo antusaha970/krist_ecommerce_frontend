@@ -60,8 +60,8 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link text_18" to="">
-                Blog
+              <NavLink className="nav-link text_18" to="size-guide">
+                Size guide
               </NavLink>
             </li>
           </ul>

@@ -29,6 +29,7 @@ import SelectShippingAddressPage from "./pages/SelectShippingAddressPage/SelectS
 import SelectPaymentMethodPage from "./pages/SelectPaymentMethod/SelectPaymentMethodPage";
 import MyOrdersPage from "./pages/MyOrdersPage/MyOrdersPage";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
+import SizeGuidePage from "./pages/SizeGuidePage/SizeGuidePage";
 function App() {
   Modal.setAppElement("#root");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -54,6 +55,7 @@ function App() {
               <Route path="/products" element={<AllProductPage />} />
               <Route path="/products/:id" element={<ProductDetailsPage />} />
               <Route path="/contact-us" element={<ContactUsPage />} />
+              <Route path="/size-guide" element={<SizeGuidePage />} />
               <Route
                 path="/profile"
                 element={
