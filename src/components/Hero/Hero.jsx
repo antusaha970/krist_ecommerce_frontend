@@ -13,6 +13,10 @@ const Hero = () => {
               <h2 className="h1 fw-bold banner_title">
                 Women&apos;s Collection
               </h2>
+              <p>
+                On krist you will get best deals on exclusive t-shirts. Buy from
+                large collection.
+              </p>
               <h5 className="">UPTO OFF 40%</h5>
               <Link
                 to={"/products"}
