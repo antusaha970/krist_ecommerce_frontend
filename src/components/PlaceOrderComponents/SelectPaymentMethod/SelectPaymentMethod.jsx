@@ -19,20 +19,34 @@ const SelectPaymentMethod = () => {
       toast.warn("Please select a payment method");
       return;
     }
+    const { items, address } = finalItemToOrder;
+    items.forEach((item) => {
+      delete item["price"];
+    });
+    const data = {
+      address,
+      items,
+    };
 
     if (paymentMethod == "card") {
-      toast.warn("currently we are not accepting card payments");
+      try {
+        setIsLoading(true);
+        const response = await client.post("/api/orders/card/", data);
+        const session_url = response.data.session_url;
+        window.open(session_url, "_blank").focus();
+        toast.info("Please pay with card to complete order");
+        client.delete("/api/cart/delete_all/");
+        navigate("/");
+      } catch (error) {
+        console.error({ error });
+        toast.error("There was an error to process the order");
+      } finally {
+        setIsLoading(false);
+      }
+      return;
     }
 
     if (paymentMethod == "cash") {
-      const { items, address } = finalItemToOrder;
-      items.forEach((item) => {
-        delete item["price"];
-      });
-      const data = {
-        address,
-        items,
-      };
       try {
         setIsLoading(true);
         const response = await client.post("/api/orders/", data);
