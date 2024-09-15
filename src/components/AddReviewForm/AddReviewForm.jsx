@@ -20,7 +20,12 @@ const AddReviewForm = ({ productId }) => {
       }
     } catch (error) {
       console.error({ error });
-      toast.error("There was an error! please try again later.");
+      console.log(error.response.status);
+      if (error.response.status == 401) {
+        toast.error("You haven't ordered this product!");
+      } else {
+        toast.error("There was an error! please try again later.");
+      }
     } finally {
       setLoading(false);
     }
