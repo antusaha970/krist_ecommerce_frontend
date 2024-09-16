@@ -3,16 +3,20 @@ import ProfileNavigation from "../ProfileNavigation/ProfileNavigation";
 import client, { backendURL } from "../../../api_client/api_client";
 import "./myOrders.css";
 import { Link } from "react-router-dom";
-
+import Loader from "../../Shared/Loader/Loader";
 const MyOrders = () => {
   const [MyOrders, setMyOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const getAllOrders = async () => {
       try {
+        setIsLoading(true);
         const response = await client.get("/api/orders/");
         setMyOrders(response.data);
       } catch (error) {
         console.error({ error });
+      } finally {
+        setIsLoading(false);
       }
     };
     getAllOrders();
@@ -25,7 +29,10 @@ const MyOrders = () => {
         <div className="col-12 col-sm-6 col-md-4">
           <ProfileNavigation />
         </div>
+
         <div className="col-12 col-sm-6 col-md-8">
+          {isLoading && <Loader />}
+          {!isLoading && MyOrders.length == 0 && <h3>You have no orders</h3>}
           <div className="row">
             {MyOrders?.map((order) => {
               return order?.items?.map((item) => (
