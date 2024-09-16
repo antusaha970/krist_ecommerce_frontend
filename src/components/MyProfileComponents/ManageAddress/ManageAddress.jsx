@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import "./manageAddress.css";
 import { toast } from "react-toastify";
+import Loader from "../../Shared/Loader/Loader";
 
 const customStyles = {
   content: {
@@ -24,14 +25,18 @@ const ManageAddress = () => {
   const [addresses, setAddresses] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getAddresses = async () => {
       try {
+        setIsLoading(true);
         const response = await client.get("/api/delivery_address/");
         setAddresses(response.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     getAddresses();
@@ -73,6 +78,7 @@ const ManageAddress = () => {
               <i className="fa-solid fa-plus"></i> Add new address
             </button>
           </div>
+          {isLoading && <Loader />}
           {addresses?.map((address) => (
             <AddressCard address={address} key={address.id} />
           ))}
