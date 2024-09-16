@@ -35,12 +35,13 @@ const RegisterForm = () => {
       const response = await client.post("/api/accounts/register/", data);
       if (response.status === 201) {
         toast.success("Registration successfully");
+        toast.info("Please login with your credentials");
         const user_data = response.data;
         localStorage.setItem(
           "access_token",
           JSON.stringify(user_data.access_token)
         );
-        navigate("/");
+        navigate("/login");
       } else {
         toast.warning("Registration failed!! please try again later");
       }
