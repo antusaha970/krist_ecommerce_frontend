@@ -1,8 +1,27 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Krist E-commerce Frontend (T-shirt selling web application)
 
-Currently, two official plugins are available:
+This is the frontend of Krist E-commerce, built with React to provide a seamless user experience for browsing and purchasing t-shirts. It integrates Bootstrap for responsive UI, Axios for API interactions, and React-Hook-Form for efficient form handling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Features
+- Browse and filter through 1000+ t-shirt designs.
+- Add items to cart or favorites.
+- Manage orders and delivery addresses.
+- Handle authentication (login, signup, password reset).
+- Protected routes that can logged in user only access. 
+- Advange filtering. 
+- Single page application.
+
+
+## Tech Stack
+
+**React:** Core framework.
+
+**Bootstrap:** For responsive design.
+
+**Axios:** For API calls to the backend.
+
+**React-Hook-Form:** For form validation and handling.
+
+
