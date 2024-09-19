@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: krist
+    command: >
+      bash -c "npm run build && npm run preview"
+    ports:
+      - 7070:4173
