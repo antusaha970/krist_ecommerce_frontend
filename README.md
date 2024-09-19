@@ -25,3 +25,24 @@ This is the frontend of Krist E-commerce, built with React to provide a seamless
 **React-Hook-Form:** For form validation and handling.
 
 
+## Docker Setup
+
+Ensure that you have Docker and Docker Compose installed on your machine.
+
+## Building the Docker Image
+
+```bash
+  docker compose build
+```
+
+This command will build the Docker image based on the Dockerfile and configurations in docker-compose.yml.
+
+## Running the Application
+
+```bash
+  docker compose up
+```
+
+This command will build (if not already built) and start the containers as defined in the docker-compose.yml file. The application should be accessible at http://localhost:7070.
+
+
