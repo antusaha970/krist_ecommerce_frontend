@@ -16,6 +16,7 @@ const Products = () => {
   const [selectedColors, setSelectedColors] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedPage, setSelectedPage] = useState(1);
+  const [selectedSorting, setSelectedSorting] = useState("created_on");
 
   useEffect(() => {
     const getAllCategories = async () => {
@@ -52,7 +53,7 @@ const Products = () => {
       try {
         setIsLoading(true);
         const response = await client.get(
-          `/api/products/?categories=${selectedCategories}&colors=${selectedColors}&sizes=${selectedSize}&page=${selectedPage}`
+          `/api/products/?categories=${selectedCategories}&colors=${selectedColors}&sizes=${selectedSize}&page=${selectedPage}&ordering=${selectedSorting}`
         );
         setProducts(response.data);
       } catch (error) {
@@ -62,7 +63,13 @@ const Products = () => {
       }
     };
     getAllProducts();
-  }, [selectedCategories, selectedColors, selectedSize, selectedPage]);
+  }, [
+    selectedCategories,
+    selectedColors,
+    selectedSize,
+    selectedPage,
+    selectedSorting,
+  ]);
 
   const handleChangeCategoryForFilter = (category) => {
     setSelectedPage(1);
@@ -86,6 +93,10 @@ const Products = () => {
     if (products.next) {
       setSelectedPage((curPage) => curPage + 1);
     }
+  };
+
+  const handleSelectSorting = (e) => {
+    setSelectedSorting(e.target.value);
   };
 
   return (
@@ -270,10 +281,13 @@ const Products = () => {
                 <select
                   className="form-select"
                   aria-label="Default select example"
+                  onChange={handleSelectSorting}
                 >
-                  <option selected="">Sort by</option>
-                  <option value={1}>Latest</option>
-                  <option value={2}>Oldest</option>
+                  <option selected="" value={"created_on"}>
+                    Sort by
+                  </option>
+                  <option value={"-created_on"}>Latest</option>
+                  <option value={"created_on"}>Oldest</option>
                 </select>
               </div>
             </div>
