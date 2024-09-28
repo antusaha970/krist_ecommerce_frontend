@@ -1,7 +1,7 @@
 import axios from "axios";
 const client = axios.create({
-  baseURL: "https://krist-ecommerce-backend.onrender.com",
-  // baseURL: "http://localhost:8000",
+  // baseURL: "https://krist-ecommerce-backend.onrender.com",
+  baseURL: "http://localhost:8000",
 });
 
 client.interceptors.request.use(
