@@ -2,12 +2,15 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/stock/logo.png";
 import "./Navbar.css";
 import { useContext, useState } from "react";
-import { IsLoggedInContext } from "../../../context/AllContext";
+import {
+  AccountInfoContext,
+  IsLoggedInContext,
+} from "../../../context/AllContext";
 import Cart from "../../Cart/Cart";
 const Navbar = () => {
   const [isLoggedIn, setIsLoading] = useContext(IsLoggedInContext);
   const [modalIsOpen, setIsOpen] = useState(false);
-
+  const [accountInfo] = useContext(AccountInfoContext);
   const handleLogout = () => {
     localStorage.clear("access_token");
     setIsLoading(false);
@@ -64,7 +67,15 @@ const Navbar = () => {
                 Size guide
               </NavLink>
             </li>
+            {isLoggedIn && accountInfo?.is_superuser && (
+              <li className="nav-item">
+                <NavLink className="nav-link text_18" to="dashboard">
+                  Admin Dashboard
+                </NavLink>
+              </li>
+            )}
           </ul>
+
           <div className="d-flex align-items-center g-4">
             {isLoggedIn && (
               <div className="me-3">

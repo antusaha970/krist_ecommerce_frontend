@@ -30,6 +30,7 @@ import SelectPaymentMethodPage from "./pages/SelectPaymentMethod/SelectPaymentMe
 import MyOrdersPage from "./pages/MyOrdersPage/MyOrdersPage";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 import SizeGuidePage from "./pages/SizeGuidePage/SizeGuidePage";
+import AdminDashboardPage from "./pages/AdminDashboradPage/AdminDashboardPage";
 
 function App() {
   Modal.setAppElement("#root");
@@ -111,6 +112,14 @@ function App() {
                 element={
                   <PrivateRoute isLoggedIn={isLoggedIn}>
                     <SelectPaymentMethodPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <AdminDashboardPage />
                   </PrivateRoute>
                 }
               />
