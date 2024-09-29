@@ -3,6 +3,7 @@ import client from "../../api_client/api_client";
 import Slider from "react-slick";
 import "./testimonial.css";
 import profile_placeholder from "../../assets/stock/profile_placeholder.webp";
+import Loader from "../Shared/Loader/Loader";
 
 const settings = {
   dots: true,
@@ -43,13 +44,18 @@ const settings = {
 
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const getTopReviews = async () => {
       try {
+        setIsLoading(true);
         const response = await client.get("/api/top_reviews/");
         setReviews(response.data);
       } catch (error) {
         console.error({ error });
+      } finally {
+        setIsLoading(false);
       }
     };
     getTopReviews();
@@ -62,6 +68,7 @@ const Testimonial = () => {
           What our customer say <i className="fa-solid fa-comment"></i>
         </h2>
       </div>
+      {isLoading && <Loader />}
 
       <Slider {...settings}>
         {reviews?.map((review) => (
