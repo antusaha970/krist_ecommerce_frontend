@@ -1,5 +1,11 @@
+import AdminMenu from "../../components/AdminDashboardComponents/AdminMenu/AdminMenu";
+
 const AdminDashboardPage = () => {
-  return <div>AdminDashboardPage</div>;
+  return (
+    <>
+      <AdminMenu />
+    </>
+  );
 };
 
 export default AdminDashboardPage;
