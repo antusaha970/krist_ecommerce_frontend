@@ -31,6 +31,7 @@ import MyOrdersPage from "./pages/MyOrdersPage/MyOrdersPage";
 import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 import SizeGuidePage from "./pages/SizeGuidePage/SizeGuidePage";
 import AdminDashboardPage from "./pages/AdminDashboradPage/AdminDashboardPage";
+import ViewAllOrdersPage from "./pages/ViewAllOrdersPage/ViewAllOrdersPage";
 
 function App() {
   Modal.setAppElement("#root");
@@ -120,6 +121,14 @@ function App() {
                 element={
                   <PrivateRoute isLoggedIn={isLoggedIn}>
                     <AdminDashboardPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/admin/view-orders"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <ViewAllOrdersPage />
                   </PrivateRoute>
                 }
               />
