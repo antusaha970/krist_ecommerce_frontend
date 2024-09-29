@@ -6,7 +6,7 @@ const OurFeatures = () => {
   return (
     <section className="our_feature my-5">
       <div className="container py-5">
-        <div className="row">
+        <div className="row g-4">
           <div className="col-12 col-sm-6 col-md-4">
             <h3 className="text-center">
               <i className="fa-solid fa-lock"></i> All secure payment methods
