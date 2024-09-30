@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import client from "../../../api_client/api_client";
+import { toast } from "react-toastify";
 
 export const ViewAllOrders = () => {
   const [placedOrders, setPlacedOrders] = useState([]);
@@ -17,7 +18,17 @@ export const ViewAllOrders = () => {
     getAllPlacedOrders();
   }, []);
 
-  console.log(placedOrders);
+  const handleChangeOrderStatus = async (e, id) => {
+    const data = { status: e.target.value };
+    try {
+      const response = await client.patch(`/api/orders/admin/${id}/`, data);
+      if (response.status == 200) {
+        toast.success("Changed order status. Reload to see current status");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <section className="container my-5">
@@ -57,11 +68,14 @@ export const ViewAllOrders = () => {
               <td> {order.payment_status} </td>
               <td> {order.status} </td>
               <td>
-                <select name="order_status">
+                <select
+                  name="order_status"
+                  onChange={() => handleChangeOrderStatus(event, order.id)}
+                >
                   <option selected>none</option>
-                  <option value="">processing</option>
-                  <option value="">delivered</option>
-                  <option value="">shipped</option>
+                  <option value="processing">processing</option>
+                  <option value="delivered">delivered</option>
+                  <option value="shipped">shipped</option>
                 </select>
               </td>
             </tr>
