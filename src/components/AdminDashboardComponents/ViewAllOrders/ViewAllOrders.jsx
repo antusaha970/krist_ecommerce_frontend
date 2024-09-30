@@ -2,17 +2,22 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import client from "../../../api_client/api_client";
 import { toast } from "react-toastify";
+import Loader from "../../Shared/Loader/Loader";
 
 export const ViewAllOrders = () => {
   const [placedOrders, setPlacedOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getAllPlacedOrders = async () => {
       try {
+        setIsLoading(true);
         const response = await client.get("/api/orders/admin/");
         setPlacedOrders(response.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     getAllPlacedOrders();
@@ -40,6 +45,7 @@ export const ViewAllOrders = () => {
         {">"}
         view all orders
       </h2>
+      {isLoading && <Loader />}
       <table className="table">
         <thead>
           <tr>
