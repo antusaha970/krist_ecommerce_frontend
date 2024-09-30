@@ -32,6 +32,7 @@ import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 import SizeGuidePage from "./pages/SizeGuidePage/SizeGuidePage";
 import AdminDashboardPage from "./pages/AdminDashboradPage/AdminDashboardPage";
 import ViewAllOrdersPage from "./pages/ViewAllOrdersPage/ViewAllOrdersPage";
+import AddProductPage from "./pages/AddProductPage/AddProductPage";
 
 function App() {
   Modal.setAppElement("#root");
@@ -129,6 +130,14 @@ function App() {
                 element={
                   <PrivateRoute isLoggedIn={isLoggedIn}>
                     <ViewAllOrdersPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/admin/add-product"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <AddProductPage />
                   </PrivateRoute>
                 }
               />
