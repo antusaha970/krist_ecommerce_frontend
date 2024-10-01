@@ -12,7 +12,7 @@ const Navbar = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [accountInfo] = useContext(AccountInfoContext);
   const handleLogout = () => {
-    localStorage.clear("access_token");
+    sessionStorage.clear("access_token");
     setIsLoading(false);
   };
 

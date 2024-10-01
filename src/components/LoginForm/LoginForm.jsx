@@ -23,7 +23,7 @@ const LoginForm = () => {
       if (response.status === 200) {
         toast.success("Logged in successful");
         const user_data = response.data;
-        localStorage.setItem(
+        sessionStorage.setItem(
           "access_token",
           JSON.stringify(user_data.access_token)
         );
