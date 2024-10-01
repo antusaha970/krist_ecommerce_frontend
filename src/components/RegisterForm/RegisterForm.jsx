@@ -37,7 +37,7 @@ const RegisterForm = () => {
         toast.success("Registration successfully");
         toast.info("Please login with your credentials");
         const user_data = response.data;
-        localStorage.setItem(
+        sessionStorage.setItem(
           "access_token",
           JSON.stringify(user_data.access_token)
         );
