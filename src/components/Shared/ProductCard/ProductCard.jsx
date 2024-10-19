@@ -12,8 +12,12 @@ const ProductCard = ({ product }) => {
       try {
         const data = { products: product.id };
         const response = await client.post("/api/wishlist/", data);
+
         if (response.status == 201) {
           toast.success("Added to your wish list");
+        }
+        if (response?.data?.statusCode == 304) {
+          toast.warn("Already added to wish list");
         }
       } catch (error) {
         console.error({ error });
@@ -32,6 +36,9 @@ const ProductCard = ({ product }) => {
         const response = await client.post("/api/cart/", data);
         if (response.status == 201) {
           toast.success("Added product to cart");
+        }
+        if (response?.data?.statusCode == 304) {
+          toast.warn("Already added to cart");
         }
       } catch (error) {
         console.error({ error });
