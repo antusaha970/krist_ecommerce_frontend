@@ -59,7 +59,7 @@ const Checkout = () => {
               <div key={item.id}>
                 <div className="d-flex align-items-center ">
                   <img
-                    src={`${backendURL}${item.product.product_images[0].images}`}
+                    src={`${item.product.product_images[0].images}`}
                     alt="product image"
                     className="check_pd_img"
                   />
