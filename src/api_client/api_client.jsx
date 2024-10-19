@@ -1,6 +1,6 @@
 import axios from "axios";
 const client = axios.create({
-  baseURL: "https://krist-ecommerce-backend.onrender.com",
+  baseURL: "https://krist-ecommerce-backend.vercel.app",
   // baseURL: "http://localhost:8000",
 });
 

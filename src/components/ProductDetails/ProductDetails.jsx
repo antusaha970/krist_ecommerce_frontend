@@ -65,11 +65,15 @@ const ProductDetails = () => {
       try {
         const data = { product: product.id };
         const response = await client.post("/api/cart/", data);
+        console.log(response);
         if (response.status == 201) {
           toast.success("Added product to cart");
         }
+        if (response.status == 304) {
+          toast.warn("Already added to cart");
+        }
       } catch (error) {
-        console.error({ error });
+        // console.error({ error });
         if (error.response.status == 304) {
           toast.warning("Already added to cart");
         }

@@ -94,7 +94,7 @@ const Cart = ({ modalIsOpen, setIsOpen }) => {
                 <img
                   src={
                     item.product.product_images.length > 0
-                      ? `http://localhost:8000/${item.product.product_images[0].images}`
+                      ? `${item.product.product_images[0].images}`
                       : ""
                   }
                   alt="product image"
