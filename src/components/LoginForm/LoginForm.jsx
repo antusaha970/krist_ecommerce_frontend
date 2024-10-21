@@ -95,6 +95,14 @@ const LoginForm = () => {
           <div className="mt-2">
             <Link to={"/forget-password"}> Forget password?</Link>
           </div>
+          <div className="mt-3">
+            <p className="mb-0">Dummy User: antusaha990@gmail.com</p>
+            <p>Dummy User password: Pa$$w0rd!</p>
+          </div>
+          <div className="mt-3">
+            <p className="mb-0">Admin email: admin@gmail.com</p>
+            <p>Admin password: admin</p>
+          </div>
         </div>
       </div>
     </section>
