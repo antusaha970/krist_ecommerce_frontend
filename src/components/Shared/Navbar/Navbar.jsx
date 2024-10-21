@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg ">
+    <nav className="navbar navbar-expand-lg sticky-top bg-white shadow-sm">
       <div className="container">
         {modalIsOpen && (
           <Cart modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />

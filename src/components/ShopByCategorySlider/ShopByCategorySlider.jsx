@@ -58,6 +58,7 @@ const ShopByCategorySlider = () => {
     };
     getAllCategory();
   }, []);
+  console.log(allCategory);
 
   return (
     <section className="container m_top_bottom">
@@ -66,12 +67,15 @@ const ShopByCategorySlider = () => {
       <div className="slider-container">
         <Slider {...settings}>
           {allCategory?.map((category) => (
-            <div key={category.name}>
-              <div className="category_box">
-                <h3 className="category_title">
-                  <Link to={"/products"}>{category.name}</Link>
-                </h3>
-              </div>
+            <div key={category.name} className="text-center category_text">
+              <img
+                src={category.thumbnail}
+                alt="display_image"
+                className="coursel_img m-auto"
+              />
+              <Link to={"/products"} className="text-decoration-none">
+                <h4 className=" my-1"> {category.name} </h4>
+              </Link>
             </div>
           ))}
         </Slider>
