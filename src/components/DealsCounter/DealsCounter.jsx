@@ -3,14 +3,15 @@ import deals from "../../assets/stock/deals.webp";
 const DealsCounter = () => {
   return (
     <section className="container m_top_bottom">
-      <div className="row align-items-center">
+      <div className="row align-items-center g-4">
         <div className="col-12 col-sm-12 col-md-6">
           <h2 className="fw-bold">Deals of the month</h2>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit
-            repellendus facilis incidunt ab at reiciendis impedit exercitationem
-            qui eligendi dolores modi soluta dicta pariatur, est velit! Unde
-            laborum ab sit?
+            We focus on carefully selecting the best clothing that is
+            comfortable, looks great, and makes you confident. Apart from the
+            fabric, design and fit, we go through strict quality control
+            parameters to give you what you truly deserve. The power of a good
+            outfit is how it can influence your perception of yourself.
           </p>
           <Link to={"/products"} className="base_button_2 text-decoration-none">
             View product <i className="fa-solid fa-arrow-right"></i>

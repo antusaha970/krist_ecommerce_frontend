@@ -7,6 +7,9 @@ const OurFeatures = () => {
     <section className="our_feature my-5">
       <div className="container py-5">
         <div className="row g-4">
+          <h2 className="text-center fw-bold">
+            Why to choose us for shopping?
+          </h2>
           <div className="col-12 col-sm-6 col-md-4">
             <h3 className="text-center">
               <i className="fa-solid fa-lock"></i> All secure payment methods

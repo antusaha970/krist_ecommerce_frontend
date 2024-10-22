@@ -58,11 +58,10 @@ const ShopByCategorySlider = () => {
     };
     getAllCategory();
   }, []);
-  console.log(allCategory);
 
   return (
     <section className="container m_top_bottom">
-      <h2 className="text-center fw-bold">Shop by category</h2>
+      <h2 className="text-center fw-bold">Available categories</h2>
       {isLoading && <Loader />}
       <div className="slider-container">
         <Slider {...settings}>
@@ -73,7 +72,10 @@ const ShopByCategorySlider = () => {
                 alt="display_image"
                 className="coursel_img m-auto"
               />
-              <Link to={"/products"} className="text-decoration-none">
+              <Link
+                to={`/products?category=${category.name}`}
+                className="text-decoration-none"
+              >
                 <h4 className=" my-1"> {category.name} </h4>
               </Link>
             </div>

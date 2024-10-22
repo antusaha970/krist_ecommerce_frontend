@@ -52,11 +52,7 @@ const Navbar = () => {
                 Shop
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link text_18" to="/">
-                Our story
-              </NavLink>
-            </li>
+
             <li className="nav-item">
               <NavLink className="nav-link text_18" to="/contact-us">
                 Contact us
