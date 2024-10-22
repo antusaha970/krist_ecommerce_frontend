@@ -17,7 +17,7 @@ const Hero = () => {
                 On krist you will get best deals on exclusive t-shirts. Buy from
                 large collection.
               </p>
-              <h5 className="">UPTO OFF 40%</h5>
+              <h5 className="mb-4">UPTO OFF 40%</h5>
               <Link
                 to={"/products"}
                 className="base_button text-decoration-none"
