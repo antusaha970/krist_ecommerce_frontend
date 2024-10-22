@@ -4,6 +4,7 @@ import ProductCard from "../Shared/ProductCard/ProductCard";
 import "./Products.css";
 import Loader from "../Shared/Loader/Loader";
 import OurService from "../Shared/OurService/OurService";
+import { useSearchParams } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState({});
@@ -11,6 +12,7 @@ const Products = () => {
   const [sizes, setSizes] = useState([]);
   const [colors, setColors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchParams] = useSearchParams();
 
   const [selectedCategories, setSelectedCategories] = useState("");
   const [selectedColors, setSelectedColors] = useState("");
