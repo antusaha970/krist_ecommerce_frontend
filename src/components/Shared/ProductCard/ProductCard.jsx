@@ -26,6 +26,7 @@ const ProductCard = ({ product }) => {
         }
       }
     } else {
+      toast.info("Please login first");
       navigate("/login");
     }
   };
