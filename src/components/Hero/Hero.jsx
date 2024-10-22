@@ -31,7 +31,6 @@ const Hero = () => {
               src={bannerImg}
               alt="banner img"
               className="img-fluid banner_img"
-              data-aos="fade-left"
             />
           </div>
         </div>

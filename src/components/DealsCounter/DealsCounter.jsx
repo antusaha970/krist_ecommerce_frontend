@@ -3,7 +3,7 @@ import deals from "../../assets/stock/deals.webp";
 const DealsCounter = () => {
   return (
     <section className="container m_top_bottom">
-      <div className="row align-items-center">
+      <div className="row align-items-center g-4">
         <div className="col-12 col-sm-12 col-md-6">
           <h2 className="fw-bold">Deals of the month</h2>
           <p>
