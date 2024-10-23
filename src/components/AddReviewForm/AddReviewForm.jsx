@@ -1,33 +1,42 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import client from "../../api_client/api_client";
 import { toast } from "react-toastify";
+import { IsLoggedInContext } from "../../context/AllContext";
+import { useNavigate } from "react-router-dom";
 
 const AddReviewForm = ({ productId }) => {
   const { register, handleSubmit } = useForm();
 
   const [loading, setLoading] = useState(false);
+  const [isLoggedIn] = useContext(IsLoggedInContext);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      const response = await client.post(
-        `/api/products/${productId}/product_review/`,
-        data
-      );
-      if (response.status == 201) {
-        toast.success("Review posted successfully");
+    if (isLoggedIn) {
+      try {
+        setLoading(true);
+        const response = await client.post(
+          `/api/products/${productId}/product_review/`,
+          data
+        );
+        if (response.status == 201) {
+          toast.success("Review posted successfully");
+        }
+      } catch (error) {
+        console.error({ error });
+        console.log(error.response.status);
+        if (error.response.status == 401) {
+          toast.error("You haven't ordered this product!");
+        } else {
+          toast.error("There was an error! please try again later.");
+        }
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error({ error });
-      console.log(error.response.status);
-      if (error.response.status == 401) {
-        toast.error("You haven't ordered this product!");
-      } else {
-        toast.error("There was an error! please try again later.");
-      }
-    } finally {
-      setLoading(false);
+    } else {
+      toast.error("Please login first!");
+      navigate("/login");
     }
   };
 
