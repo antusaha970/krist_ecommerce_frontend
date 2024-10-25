@@ -20,7 +20,7 @@ const AdminDashBoardMenu = () => {
       <div className="my-4">
         <Link
           className="text-decoration-none dashboard_link"
-          to={"/admin/add-product"}
+          to={"/admin/add-category"}
         >
           <i className="fa-solid fa-list"></i> Add new Category
         </Link>
