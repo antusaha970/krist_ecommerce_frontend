@@ -1,26 +1,12 @@
-import { Link } from "react-router-dom";
-
+import AdminDashBoardMenu from "../AdminDashBoardMenu/AdminDashBoardMenu";
 const AdminMenu = () => {
   return (
-    <section className="container my-5">
-      <h2>
-        <Link to={"/dashboard"} className="text-decoration-none">
-          Admin dashboard
-        </Link>
-      </h2>
-      <div className="d-flex justify-content-center align-items-center gap-4">
-        <Link
-          className="base_button_2 text-decoration-none"
-          to={"/admin/view-orders"}
-        >
-          View all orders
-        </Link>
-        <Link
-          className="base_button_2 text-decoration-none"
-          to={"/admin/add-product"}
-        >
-          Add new product
-        </Link>
+    <section className="my-5">
+      <div className="row g-3">
+        <div className="col-md-2 col-sm-12 col-12 shadow-sm ps-4 text-center">
+          <AdminDashBoardMenu />
+        </div>
+        <div className="col-md-10 col-sm-12 col-12"></div>
       </div>
     </section>
   );
