@@ -34,6 +34,7 @@ import AdminDashboardPage from "./pages/AdminDashboradPage/AdminDashboardPage";
 import ViewAllOrdersPage from "./pages/ViewAllOrdersPage/ViewAllOrdersPage";
 import AddProductPage from "./pages/AddProductPage/AddProductPage";
 import AddCategoryPage from "./pages/AdminDashBoardPages/AddCategoryPage/AddCategoryPage";
+import AddColorPage from "./pages/AdminDashBoardPages/AddColorPage/AddColorPage";
 
 function App() {
   Modal.setAppElement("#root");
@@ -147,6 +148,14 @@ function App() {
                 element={
                   <PrivateRoute isLoggedIn={isLoggedIn}>
                     <AddCategoryPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/admin/add-color"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <AddColorPage />
                   </PrivateRoute>
                 }
               />
