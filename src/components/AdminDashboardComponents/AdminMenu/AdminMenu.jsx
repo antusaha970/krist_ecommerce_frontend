@@ -6,7 +6,7 @@ const AdminMenu = () => {
         <div className="col-md-2 col-sm-12 col-12 shadow-sm ps-4 text-center">
           <AdminDashBoardMenu />
         </div>
-        <div className="col-md-10 col-sm-12 col-12"></div>
+        <div className="col-md-10 col-sm-12 col-12">Overview</div>
       </div>
     </section>
   );
