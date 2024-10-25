@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react";
 import AdminDashBoardMenu from "../AdminDashBoardMenu/AdminDashBoardMenu";
 import "./AdminMenu.css";
+import client from "../../../api_client/api_client";
 const AdminMenu = () => {
+  const [overviewInformation, setOverviewInformation] = useState({});
+
+  useEffect(() => {
+    const getAdminOverviewInformation = async () => {
+      try {
+        const response = await client.get("/api/admin/overview/");
+        setOverviewInformation(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getAdminOverviewInformation();
+  }, []);
+
   return (
     <section className="container-fluid my-5">
       <div className="row g-3">
@@ -21,7 +37,9 @@ const AdminMenu = () => {
                   </div>
                   <div className="row align-items-center mb-2 d-flex">
                     <div className="col-8">
-                      <h2 className="d-flex align-items-center mb-0">3,243</h2>
+                      <h2 className="d-flex align-items-center mb-0">
+                        {overviewInformation?.total_order}
+                      </h2>
                     </div>
                   </div>
                 </div>
@@ -38,7 +56,9 @@ const AdminMenu = () => {
                   </div>
                   <div className="row align-items-center mb-2 d-flex">
                     <div className="col-8">
-                      <h2 className="d-flex align-items-center mb-0">15</h2>
+                      <h2 className="d-flex align-items-center mb-0">
+                        {overviewInformation?.total_account}
+                      </h2>
                     </div>
                   </div>
                 </div>
@@ -51,11 +71,13 @@ const AdminMenu = () => {
                     <i className="fas fa-ticket-alt" />
                   </div>
                   <div className="mb-4">
-                    <h5 className="card-title mb-0">Total amount sell</h5>
+                    <h5 className="card-title mb-0">Total Product</h5>
                   </div>
                   <div className="row align-items-center mb-2 d-flex">
                     <div className="col-8">
-                      <h2 className="d-flex align-items-center mb-0">578</h2>
+                      <h2 className="d-flex align-items-center mb-0">
+                        {overviewInformation?.total_product}
+                      </h2>
                     </div>
                   </div>
                 </div>
