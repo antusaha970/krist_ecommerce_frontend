@@ -37,8 +37,8 @@ export const ViewAllOrders = () => {
   };
 
   return (
-    <section className=" my-5">
-      <div className="row g-3">
+    <section className="container-fluid my-5">
+      <div className="row g-2">
         <div className="col-md-2 col-sm-12 col-12 shadow-sm ps-4 text-center">
           <AdminDashBoardMenu />
         </div>
