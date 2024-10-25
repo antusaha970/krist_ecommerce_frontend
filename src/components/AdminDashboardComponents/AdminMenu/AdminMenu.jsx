@@ -101,6 +101,10 @@ const AdminMenu = () => {
               </div>
             </div>
           </div>
+
+          <div className="mt-5">
+            <h2>Latest products</h2>
+          </div>
         </div>
       </div>
     </section>
