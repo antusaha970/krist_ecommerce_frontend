@@ -35,6 +35,7 @@ import ViewAllOrdersPage from "./pages/ViewAllOrdersPage/ViewAllOrdersPage";
 import AddProductPage from "./pages/AddProductPage/AddProductPage";
 import AddCategoryPage from "./pages/AdminDashBoardPages/AddCategoryPage/AddCategoryPage";
 import AddColorPage from "./pages/AdminDashBoardPages/AddColorPage/AddColorPage";
+import AddSizePage from "./pages/AddSizePage/AddSizePage";
 
 function App() {
   Modal.setAppElement("#root");
@@ -156,6 +157,14 @@ function App() {
                 element={
                   <PrivateRoute isLoggedIn={isLoggedIn}>
                     <AddColorPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/admin/add-size"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <AddSizePage />
                   </PrivateRoute>
                 }
               />
