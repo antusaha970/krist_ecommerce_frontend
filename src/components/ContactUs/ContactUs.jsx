@@ -1,11 +1,25 @@
 import { useForm } from "react-hook-form";
 import "./contactUs.css";
 import { toast } from "react-toastify";
+import client from "../../api_client/api_client";
+import { useState } from "react";
 const ContactUs = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    toast.success("Thank you. We will get back to you soon!");
+  const onSubmit = async (data) => {
+    try {
+      setIsLoading(true);
+      const response = await client.post("/api/admin/messages/", data);
+      if (response.status == 201) {
+        toast.success("Thank you. We will get back to you soon!");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+      reset();
+    }
   };
 
   return (
@@ -784,6 +798,8 @@ const ContactUs = () => {
                 id="formName"
                 className="form-control form-control-lg thick"
                 placeholder="Name"
+                {...register("name")}
+                required
               />
             </div>
             {/* E-mail */}
@@ -796,6 +812,8 @@ const ContactUs = () => {
                 id="formEmail"
                 className="form-control form-control-lg thick"
                 placeholder="E-mail"
+                {...register("email")}
+                required
               />
             </div>
             {/* Message */}
@@ -806,11 +824,20 @@ const ContactUs = () => {
                 rows={7}
                 placeholder="Message"
                 defaultValue={""}
+                {...register("message")}
+                required
               />
             </div>
             {/* Submit btn */}
             <div className="text-center">
-              <button className="base_button_2">Send message</button>
+              {!isLoading && (
+                <button className="base_button_2">Send message</button>
+              )}
+              {isLoading && (
+                <button className="base_button_2" disabled>
+                  Please wait...
+                </button>
+              )}
             </div>
           </form>
         </div>
