@@ -4,6 +4,7 @@ import "./AdminMenu.css";
 import client from "../../../api_client/api_client";
 const AdminMenu = () => {
   const [overviewInformation, setOverviewInformation] = useState({});
+  const [latestProducts, setLatestProducts] = useState([]);
 
   useEffect(() => {
     const getAdminOverviewInformation = async () => {
@@ -14,8 +15,18 @@ const AdminMenu = () => {
         console.error(error);
       }
     };
+    const getLatestProducts = async () => {
+      try {
+        const response = await client.get("/api/admin/latest_product/");
+        setLatestProducts(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     getAdminOverviewInformation();
+    getLatestProducts();
   }, []);
+  console.log(latestProducts);
 
   return (
     <section className="container-fluid my-5">
