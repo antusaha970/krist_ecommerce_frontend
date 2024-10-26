@@ -1,5 +1,11 @@
+import ViewClientMessage from "../../../components/AdminDashboardComponents/ViewClientMessage/ViewClientMessage";
+
 const ViewClientMessagePage = () => {
-  return <div>ViewClientMessagePage</div>;
+  return (
+    <>
+      <ViewClientMessage />
+    </>
+  );
 };
 
 export default ViewClientMessagePage;
