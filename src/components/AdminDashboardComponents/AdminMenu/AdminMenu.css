@@ -66,3 +66,7 @@ card {
   background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
   color: #fff;
 }
+
+.bg_overview {
+  background-color: #f5f7fa;
+}
