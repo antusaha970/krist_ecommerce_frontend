@@ -12,6 +12,9 @@ This is the frontend of Krist E-commerce, built with React to provide a seamless
 - Protected routes that can logged in user only access. 
 - Advange filtering. 
 - Single page application.
+- REST APIs integration
+- Payment System
+- Admin Dashboard 
 
 
 ## Tech Stack
