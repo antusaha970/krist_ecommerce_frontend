@@ -36,6 +36,7 @@ import AddProductPage from "./pages/AddProductPage/AddProductPage";
 import AddCategoryPage from "./pages/AdminDashBoardPages/AddCategoryPage/AddCategoryPage";
 import AddColorPage from "./pages/AdminDashBoardPages/AddColorPage/AddColorPage";
 import AddSizePage from "./pages/AddSizePage/AddSizePage";
+import ViewClientMessagePage from "./pages/AdminDashBoardPages/ViewClientMessagePage/ViewClientMessagePage";
 
 function App() {
   Modal.setAppElement("#root");
@@ -165,6 +166,14 @@ function App() {
                 element={
                   <PrivateRoute isLoggedIn={isLoggedIn}>
                     <AddSizePage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/admin/view-client-messages"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <ViewClientMessagePage />
                   </PrivateRoute>
                 }
               />
