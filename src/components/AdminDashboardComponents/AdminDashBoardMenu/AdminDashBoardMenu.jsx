@@ -50,6 +50,14 @@ const AdminDashBoardMenu = () => {
           <i className="fa-solid fa-plus"></i> Add new product
         </Link>
       </div>
+      <div className="my-4">
+        <Link
+          className="text-decoration-none dashboard_link"
+          to={"/admin/view-client-messages"}
+        >
+          <i className="fa-regular fa-message"></i> View messages
+        </Link>
+      </div>
     </>
   );
 };
