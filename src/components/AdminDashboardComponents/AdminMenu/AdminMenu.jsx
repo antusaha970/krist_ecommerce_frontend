@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import AdminDashBoardMenu from "../AdminDashBoardMenu/AdminDashBoardMenu";
 import "./AdminMenu.css";
 import client from "../../../api_client/api_client";
+import LatestProductCard from "../LatestProductCard/LatestProductCard";
+import Loader from "../../Shared/Loader/Loader";
 const AdminMenu = () => {
   const [overviewInformation, setOverviewInformation] = useState({});
+  const [latestProducts, setLatestProducts] = useState([]);
+  const [isLoadingLatestProduct, setIsLoadingLatestProduct] = useState(false);
 
   useEffect(() => {
     const getAdminOverviewInformation = async () => {
@@ -14,8 +18,21 @@ const AdminMenu = () => {
         console.error(error);
       }
     };
+    const getLatestProducts = async () => {
+      try {
+        setIsLoadingLatestProduct(true);
+        const response = await client.get("/api/admin/latest_product/");
+        setLatestProducts(response.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoadingLatestProduct(false);
+      }
+    };
     getAdminOverviewInformation();
+    getLatestProducts();
   }, []);
+  console.log(latestProducts);
 
   return (
     <section className="container-fluid my-5">
@@ -23,8 +40,8 @@ const AdminMenu = () => {
         <div className="col-md-2 col-sm-12 col-12 shadow-sm ps-4 text-center">
           <AdminDashBoardMenu />
         </div>
-        <div className="col-md-10 col-sm-12 col-12">
-          <h2 className="mb-0 text-center">Overview</h2>
+        <div className="col-md-10 col-sm-12 col-12 bg_overview mt-0 py-2">
+          <h2 className="my-0 text-center">Overview</h2>
           <div className="row ">
             <div className="col-xl-6 col-lg-6">
               <div className="card l-bg-cherry">
@@ -104,6 +121,13 @@ const AdminMenu = () => {
 
           <div className="mt-5">
             <h2>Latest products</h2>
+            <div className="row g-3">
+              {isLoadingLatestProduct && <Loader />}
+
+              {latestProducts?.map((product, idx) => (
+                <LatestProductCard product={product} key={idx} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
