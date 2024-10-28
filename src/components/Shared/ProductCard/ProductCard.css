@@ -98,7 +98,7 @@
 }
 .product-grid .product-button-group {
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 .product-grid .add-to-cart {
   color: var(--text-color);
