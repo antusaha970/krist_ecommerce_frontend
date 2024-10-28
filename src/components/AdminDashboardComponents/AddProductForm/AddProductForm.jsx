@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import client from "../../../api_client/api_client";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -33,12 +32,28 @@ const AddProductForm = () => {
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
+      const image1Link = data.image1;
+      const image2Link = data.image2;
+      let product_id = null;
+      delete data.image1;
+      delete data.image2;
+      data.rating = 0;
+
       const response = await client.post("/api/products/", data);
       if (response.status == 201) {
-        toast.success("New product has been added");
+        toast.success("Product has been added successfully now adding images");
+        product_id = response?.data?.id;
+      }
+      const response2 = await client.post(
+        `/api/products/${product_id}/upload_product_image/`,
+        { images: [image1Link, image2Link] }
+      );
+      if (response2.status == 201) {
+        toast.success("Images added successfully");
       }
     } catch (error) {
       console.error({ error });
+      toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
     }
@@ -62,6 +77,7 @@ const AddProductForm = () => {
                 id="title"
                 placeholder="Enter product title"
                 {...register("title")}
+                required
               />
             </div>
             <div className="mb-3">
@@ -74,6 +90,7 @@ const AddProductForm = () => {
                 id="rating"
                 placeholder="Enter product rating"
                 {...register("rating")}
+                required
               />
             </div>
             <div className="mb-3">
@@ -86,6 +103,7 @@ const AddProductForm = () => {
                 id="stock"
                 placeholder="Enter product stock"
                 {...register("stock")}
+                required
               />
             </div>
             <div className="mb-3">
@@ -98,6 +116,7 @@ const AddProductForm = () => {
                 id="stock"
                 placeholder="Enter product stock"
                 {...register("price")}
+                required
               />
             </div>
             <div className="mb-3">
@@ -109,6 +128,7 @@ const AddProductForm = () => {
                 id="description"
                 placeholder="Enter product description"
                 {...register("description")}
+                required
               />
             </div>
             <div className="mb-3">
@@ -120,10 +140,11 @@ const AddProductForm = () => {
                 id="add_description"
                 placeholder="Enter product additional description"
                 {...register("additional_info")}
+                required
               />
             </div>
             <div className="mb-3">
-              <label>Select Product categories</label>
+              <label>Select Product categories *</label>
               <br />
               {categories?.map((cat) => (
                 <>
@@ -140,7 +161,7 @@ const AddProductForm = () => {
               ))}
             </div>
             <div className="mb-3">
-              <label>Select Product colors</label>
+              <label>Select Product colors *</label>
               <br />
               {colors?.map((cat) => (
                 <>
@@ -157,7 +178,7 @@ const AddProductForm = () => {
               ))}
             </div>
             <div className="mb-3">
-              <label>Select Product sizes</label>
+              <label>Select Product sizes *</label>
               <br />
               {sizes?.map((cat) => (
                 <>
@@ -172,6 +193,32 @@ const AddProductForm = () => {
                   <br />
                 </>
               ))}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">
+                Product image URL 1 (Hosted on live server) *
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                placeholder="Enter image URL"
+                {...register("image1")}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">
+                Product image URL 2 (Hosted on live server) *
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                placeholder="Enter image URL"
+                {...register("image2")}
+                required
+              />
             </div>
             {!isLoading && (
               <button className="base_button" type="submit">
