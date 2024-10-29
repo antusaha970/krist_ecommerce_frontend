@@ -29,6 +29,22 @@ const AddProductForm = () => {
     getAllDependencies();
   }, []);
 
+  const validate_form_data = (data) => {
+    if (data["categories"].length < 1) {
+      toast.warn("Must select a category!");
+      return false;
+    }
+    if (data["colors"].length < 1) {
+      toast.warn("Must select a color!");
+      return false;
+    }
+    if (data["sizes"].length < 1) {
+      toast.warn("Must select a size!");
+      return false;
+    }
+    return true;
+  };
+
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
@@ -37,7 +53,10 @@ const AddProductForm = () => {
       let product_id = null;
       delete data.image1;
       delete data.image2;
-      data.rating = 0;
+      data["rating"] = 0;
+      if (!validate_form_data(data)) {
+        return;
+      }
 
       const response = await client.post("/api/products/", data);
       if (response.status == 201) {
@@ -80,19 +99,7 @@ const AddProductForm = () => {
                 required
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="rating" className="form-label">
-                Rating *
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                id="rating"
-                placeholder="Enter product rating"
-                {...register("rating")}
-                required
-              />
-            </div>
+
             <div className="mb-3">
               <label htmlFor="stock" className="form-label">
                 Stock *

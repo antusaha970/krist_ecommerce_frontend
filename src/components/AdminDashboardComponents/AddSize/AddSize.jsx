@@ -38,8 +38,9 @@ const AddSize = () => {
                 type="text"
                 className="form-control"
                 id="title"
-                placeholder="Enter product title"
+                placeholder="Write size name"
                 {...register("name")}
+                required
               />
             </div>
 
