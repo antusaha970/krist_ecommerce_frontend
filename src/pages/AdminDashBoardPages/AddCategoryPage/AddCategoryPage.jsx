@@ -37,8 +37,9 @@ const AddCategoryPage = () => {
                 type="text"
                 className="form-control"
                 id="title"
-                placeholder="Enter product title"
+                placeholder="Write category name"
                 {...register("name")}
+                required
               />
             </div>
             <div className="mb-3">
@@ -49,8 +50,9 @@ const AddCategoryPage = () => {
                 type="text"
                 className="form-control"
                 id="title"
-                placeholder="Enter product title"
+                placeholder="Enter thumbnail URL of category image"
                 {...register("thumbnail")}
+                required
               />
             </div>
             {!isLoading && (

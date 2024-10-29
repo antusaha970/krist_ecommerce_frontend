@@ -37,8 +37,9 @@ const AddColor = () => {
                 type="text"
                 className="form-control"
                 id="title"
-                placeholder="Enter product title"
+                placeholder="Write color name"
                 {...register("name")}
+                required
               />
             </div>
 
